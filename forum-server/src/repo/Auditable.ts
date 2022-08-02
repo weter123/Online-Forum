@@ -10,14 +10,14 @@ export class Auditable extends BaseEntity{
     createdBy: string;
 
     @Column("timestamp with time zone",{
-        name: "CreatedOn",
+        name: "createdOn",
         default: () => `now()`,
         nullable:false
     })
     createdOnd: Date;
 
     @Column("varchar",{
-        name:"LastModifiedBy",
+        name:"lastModifiedBy",
         length: 60,
         default: () =>`getpgusername()`,
         nullable: false
@@ -25,7 +25,7 @@ export class Auditable extends BaseEntity{
     lastModifiedOn: string;
 
     @Column("timestamp with time zone",{
-        name: "LastModifiedOn",
+        name: "lastModifiedOn",
         default: () => `now()`,
         nullable:false
     })

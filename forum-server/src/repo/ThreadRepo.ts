@@ -93,7 +93,7 @@ export const getThreadByCategoryId = async(
     const threads = await Thread.createQueryBuilder("thread")
     .where(`thread."categoryId" = :categoryId`,{ categoryId})
     .leftJoinAndSelect("thread.category", "category")
-    .orderBy("thread.CreatedOn", "DESC")
+    .orderBy("thread.createdOn", "DESC")
     .getMany();
 
     if(!threads){

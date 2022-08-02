@@ -65,7 +65,7 @@ export const getThreadItemsByThreadId = async(
     const threadItems = await ThreadItem.createQueryBuilder("ti")
     .where(`ti."threadId" = :threadId`, {threadId})
     .leftJoinAndSelect("ti.thread", "thread")
-    .orderBy("ti.CreatedOn", "DESC")
+    .orderBy("ti.createdOn", "DESC")
     .getMany();
 
     if(!threadItems){
