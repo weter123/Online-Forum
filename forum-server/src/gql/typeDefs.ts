@@ -37,6 +37,12 @@ const typeDefs =gql `
     }
     
     union ThreadResult = Thread | EntityResult
+
+    type ThreadArray {
+        threads: [Thread!]
+    }
+
+    union ThreadArrayResult = ThreadArray | EntityResult
     
     type ThreadItem {
         id: ID!
@@ -65,6 +71,7 @@ const typeDefs =gql `
     
     type Query {
         getThreadById(id: ID!): ThreadResult
+        getThreadByCategoryId(categoryId: ID!) : ThreadArrayResult!
     }
 
     type Mutation {
