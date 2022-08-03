@@ -7,6 +7,9 @@ import { login, logout, register } from "./repo/UserRepo";
 import bodyParser from "body-parser";
 import { createThread, getThreadByCategoryId, getThreadById } from "./repo/ThreadRepo";
 import { createThreadItem, getThreadItemsByThreadId } from "./repo/ThreadItemRepo";
+import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
+import typeDefs from "./gql/typeDefs";
+import resolvers from "./gql/resolvers";
 
 require("dotenv").config();
 declare module "express-session" {
@@ -203,6 +206,14 @@ const main = async() =>{
             res.send(ex.message);
         }
     });
+
+    const schema = makeExecutableSchema({typeDefs,resolvers});
+    const apolloServer = new ApolloServer({
+        schema,
+        context:({req,res}: any) => ({req,res}),  
+    });
+
+    apolloServer.applyMiddleware({app});
     
     app.listen({port:process.env.SERVER_PORT},()=>{
         console.log(`Server ready on port ${process.env.SERVER_PORT}`);
