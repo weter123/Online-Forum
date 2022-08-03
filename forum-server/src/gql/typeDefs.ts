@@ -24,7 +24,7 @@ const typeDefs =gql `
     type Thread{
         id: ID!
         views: Int!
-        isDisabled: !Boolean
+        isDisabled: Boolean!
         title: String!
         body: String!
         user: User!
@@ -41,7 +41,7 @@ const typeDefs =gql `
     type ThreadItem {
         id: ID!
         views: Int!
-        isDisabled: !Boolean
+        isDisabled: Boolean!
         title: String!
         body: String!
         user: User!
@@ -52,7 +52,7 @@ const typeDefs =gql `
         lastModifiedOn: Date!
     }
     
-    type Thread Category {
+    type ThreadCategory {
         id: ID!
         name: String!
         description: String
@@ -64,7 +64,7 @@ const typeDefs =gql `
     }
     
     type Query {
-        getThreadVyId(id: ID!): ThreadResult
+        getThreadById(id: ID!): ThreadResult
     }
     `;
 

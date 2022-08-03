@@ -10,7 +10,7 @@ interface EntityResult {
 
 }
 const resolvers: IResolvers = {
-    ThreadResults: {
+    ThreadResult: {
         __resolveType(obj: any, context:GqlContext, info :any){
             if(obj.messages){
                 return "EntityResult";
