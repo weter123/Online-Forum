@@ -49,13 +49,14 @@ export class Thread extends Auditable{
 
     @ManyToOne(() => User, (user: User) => user.threads)
     user: User;
+
     @OneToMany(()=>ThreadItem,threadItems => threadItems.thread)
     threadItems: ThreadItem[];
 
-    @OneToMany(()=> ThreadPoint, (threadPoint)=>{threadPoint.thread})
+    @OneToMany(()=> ThreadPoint, (threadPoint)=>threadPoint.thread)
     threadPoints: ThreadPoint[];
 
     @ManyToOne(() => ThreadCategory, (threadCategory)=> threadCategory.threads)
     category: ThreadCategory;
-
 }
+

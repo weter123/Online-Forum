@@ -14,7 +14,7 @@ export class Auditable extends BaseEntity{
         default: () => `now()`,
         nullable:false
     })
-    createdOnd: Date;
+    createdOn: Date;
 
     @Column("varchar",{
         name:"lastModifiedBy",

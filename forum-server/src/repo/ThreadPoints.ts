@@ -21,6 +21,6 @@ export class ThreadPoint extends Auditable {
 
     @ManyToOne(()=> Thread, (thread) => thread.threadPoints)
     thread: Thread;
-
-
 }
+
+
