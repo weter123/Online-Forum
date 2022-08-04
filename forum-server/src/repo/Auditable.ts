@@ -22,13 +22,13 @@ export class Auditable extends BaseEntity{
         default: () =>`getpgusername()`,
         nullable: false
     })
-    lastModifiedOn: string;
+    lastModifiedBy: string;
 
     @Column("timestamp with time zone",{
         name: "lastModifiedOn",
         default: () => `now()`,
         nullable:false
     })
-    LastModifiedOn: Date;
+    lastModifiedOn: Date;
 
 }
