@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PubSub } from "graphql-subscriptions";
+import { PubSub } from "apollo-server-express";
 
 
 export interface GqlContext {
