@@ -56,7 +56,7 @@ const main = async() =>{
     app.use(router);
     router.get("/", (req, res, next) => {
         req.session!.test = "hello";
-        res.send("hello");
+        res.send( `${req.session!.test }`);
       });
 
     router.post("/register", async(req,res,next)=> {
@@ -83,7 +83,6 @@ const main = async() =>{
     router.post("/login", async(req,res,next)=> {
         try {
             console.log("params", req.body);
-            console.log("userid", req.session!.userId);
             const userResult = await login(
                 req.body.userName,
                 req.body.password
@@ -104,7 +103,6 @@ const main = async() =>{
     router.post("/logout", async (req, res, next) => {
         try {
           console.log("params", req.body);
-          console.log("userid", req.session!.userId);
           const msg = await logout(req.body.userName);
           if (msg) {
             req.session!.userId = null;
@@ -210,13 +208,13 @@ const main = async() =>{
     const schema = makeExecutableSchema({typeDefs,resolvers});
     const apolloServer = new ApolloServer({
         schema,
-        context:({req,res}: any) => ({req,res}),  
+        context: ({ req, res }: any) => ({ req, res }),
     });
 
     apolloServer.applyMiddleware({app});
     
     app.listen({port:process.env.SERVER_PORT},()=>{
-        console.log(`Server ready on port ${process.env.SERVER_PORT}`);
+        console.log(`Server ready on port ${process.env.SERVER_PORT}${apolloServer.graphqlPath}`);
     });
     };
 main();
