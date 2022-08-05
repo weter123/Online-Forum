@@ -20,6 +20,8 @@ const typeDefs =gql `
         lastModifiedBy: String!
         lastModifiedOn: Date!
     }
+
+    union UserResult = User | EntityResult
     
     type Thread{
         id: ID!
@@ -72,6 +74,7 @@ const typeDefs =gql `
     type Query {
         getThreadById(id: ID!): ThreadResult
         getThreadByCategoryId(categoryId: ID!) : ThreadArrayResult!
+        me: UserResult!
     }
 
     type Mutation {
@@ -81,6 +84,11 @@ const typeDefs =gql `
             title: String
             body: String!
         ): EntityResult
+        register(email: String!, userName: String!, password: String!): String!
+        login(userName: String!, password: String!) : String!
+        logout(userName: String!): String!
+        updateThreadPoint(userId: ID!, threadId: ID!, increment: Boolean): String!
+        updateThreadItemPoint(userId: ID!, threadItemId: ID!, increment: Boolean): String!
     }
     `;
 
