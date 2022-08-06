@@ -86,17 +86,18 @@ export const getThreadById = async(
     };
 };
 
-export const getThreadByCategoryId = async(
+export const getThreadsByCategoryId = async(
     categoryId: string
 ): Promise<QueryArrayResult<Thread>> =>{
 
     const threads = await Thread.createQueryBuilder("thread")
-    .where(`thread."categoryId" = :categoryId`,{ categoryId})
+    .where('thread."categoryId" = :categoryId',{ categoryId})
     .leftJoinAndSelect("thread.category", "category")
+    .leftJoinAndSelect("thread.threadItems", "threadItems")
     .orderBy("thread.createdOn", "DESC")
     .getMany();
 
-    if(!threads){
+    if(!threads || threads.length === 0){
         return {
             messages: ["Threads of category not found"],
         };
@@ -108,3 +109,22 @@ export const getThreadByCategoryId = async(
     };
 };
 
+export const getThreadsLatest = async() : Promise<QueryArrayResult<Thread>> => {
+    const threads = await Thread.createQueryBuilder("thread")
+    .leftJoinAndSelect("thread.category","category")
+    .leftJoinAndSelect("thread.threadItems", "threadItems")
+    .orderBy("thread.createdOn", "DESC")
+    .take(10)
+    .getMany();
+
+    if(!threads || threads.length === 0){
+        return {
+            messages: ["Threads of Latest not found"],
+        };
+    };
+
+    console.log(threads);
+    return{
+        entities: threads,
+    };
+}

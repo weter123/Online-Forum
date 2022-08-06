@@ -5,7 +5,7 @@ import { Thread } from "../repo/Thread";
 import { getAllCategories } from "../repo/ThreadCategoriesRepo";
 import { ThreadCategory } from "../repo/ThreadCategory";
 import { updateThreadPoint } from "../repo/ThreadPointRepo";
-import { createThread, getThreadByCategoryId, getThreadById } from "../repo/ThreadRepo";
+import { createThread, getThreadsByCategoryId, getThreadById, getThreadsLatest } from "../repo/ThreadRepo";
 import { User } from "../repo/User";
 import { login, logout, me, register, UserResult } from "../repo/UserRepo";
 import { GqlContext } from "./GqlContext";
@@ -63,7 +63,7 @@ const resolvers: IResolvers = {
                 throw ex;
             }
         },
-        getThreadByCategoryId: async (
+        getThreadsByCategoryId: async (
             obj: any,
             args: { categoryId: string},
             ctx: GqlContext,
@@ -71,7 +71,28 @@ const resolvers: IResolvers = {
         ): Promise< {threads: Array<Thread>} | EntityResult> => {
             let threads: QueryArrayResult<Thread>;
             try{
-                threads = await getThreadByCategoryId(args.categoryId);
+                threads = await getThreadsByCategoryId(args.categoryId);
+                if(threads.entities) {
+                    return {
+                        threads: threads.entities,
+                    };
+                }
+                return {
+                    messages: threads.messages ? threads.messages :  [STANDARD_ERROR],
+                };
+            } catch (ex) {
+                throw ex;
+            }
+        },
+        getThreadsLatest: async (
+            obj: any,
+            args: { categoryId: string},
+            ctx: GqlContext,
+            info: any
+        ): Promise< {threads: Array<Thread>} | EntityResult> => {
+            let threads: QueryArrayResult<Thread>;
+            try{
+                threads = await getThreadsLatest();
                 if(threads.entities) {
                     return {
                         threads: threads.entities,

@@ -5,7 +5,7 @@ import Redis from "ioredis";
 import { createConnection } from "typeorm";
 import { login, logout, register } from "./repo/UserRepo";
 import bodyParser from "body-parser";
-import { createThread, getThreadByCategoryId, getThreadById } from "./repo/ThreadRepo";
+import { createThread, getThreadById, getThreadsByCategoryId } from "./repo/ThreadRepo";
 import { createThreadItem, getThreadItemsByThreadId } from "./repo/ThreadItemRepo";
 import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import typeDefs from "./gql/typeDefs";
@@ -161,7 +161,7 @@ const main = async() =>{
 
     router.post("/threadsbycategory", async (req,res,next)=> {
         try{
-            const threadResult = await getThreadByCategoryId(req.body.categoryId);
+            const threadResult = await getThreadsByCategoryId(req.body.categoryId);
 
             if( threadResult && threadResult.entities){
                 let items ="";
