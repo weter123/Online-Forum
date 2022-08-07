@@ -23,10 +23,28 @@ some of the dependancies provided for the project are out of date. as such, I to
     
 due to issue with installation, I am using react-select instead of react-dropdown (testing)
 
+# ToDo List
+
+Current Todos:
+
+  - Complete adding GraphQL Schema.
+
+Future Todos:
+
+  - Deploy Application to AWS.
+  
+  - update application to utilize the latest recommended dependencies when feasable.
+  
+  - make the application mobile friendly.
+  
+  
 # Development Log
 2022-08-02: committed Client and Server folders into the repository. setting up GraphQL on the server side.
 
 2022-08-03: completed base setup of GraphQL. created resolvers for createThread, getThreadById and getThreadByCategoryID calls. Working on updateThreadPoint Call.
 
 2022-08-04: created resolvers for updateThreadPont, updateThreadItemPoint, register, login, and logout. fixed bug that caused userId to remain undefined even when altered.
+
+2022-08-05:
+
 
