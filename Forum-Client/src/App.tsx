@@ -8,6 +8,7 @@ import { gql, useQuery } from '@apollo/client';
 import { useAppDispatch } from './hooks/useHooks';
 import { userProfile } from './store/user/Reducers';
 import { ThreadCategories } from './store/categories/Reducer';
+import useRefreshReduxMe from './hooks/useRefreshReduxMe';
 
 const GetAllCategories = gql `
     query getAllCategories {
@@ -18,10 +19,21 @@ const GetAllCategories = gql `
     }
 `;
 function App() {
-  const { data }= useQuery(GetAllCategories);
+  const { data: categoriesData }= useQuery(GetAllCategories);
+  const {execMe, updateMe} = useRefreshReduxMe();
   const dispatch = useAppDispatch();
 
+  useEffect(()=> {
+    execMe();
+  }, [execMe]);
+
+  useEffect(()=> {
+    updateMe();
+  }, [updateMe]);
+
+  
   useEffect(() => {
+    /*
     dispatch({
       type: userProfile,
       payload: {
@@ -29,14 +41,14 @@ function App() {
         userName: "testUser",
       },
     });
-
-    if(data && data.getAllCategories) {
+    */
+    if(categoriesData && categoriesData.getAllCategories) {
       dispatch({
         type: ThreadCategories,
-        payload: data.getAllCategories,
+        payload: categoriesData.getAllCategories,
       });
     }
-  },[ dispatch, data])
+  },[ dispatch, categoriesData])
 
   return (
 
