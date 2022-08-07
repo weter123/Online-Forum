@@ -6,16 +6,36 @@ import { allowSubmit } from "./common/Helpers";
 
 import  {UserProfileSetType}  from "../../store/user/Reducers"
 import { useAppDispatch } from "../../hooks/useHooks";
+import { gql, useMutation } from "@apollo/client";
+import useRefreshReduxMe, { Me } from "../../hooks/useRefreshReduxMe";
+import { exec } from "child_process";
+import { update } from "lodash";
+const LoginMutation = gql `
+  mutation Login($userName:String!, $password: String!) {
+    login(userName: $userName, password: $password)
+  }
+`;
 
 const Login: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
 
+  const [execLogin] = useMutation(LoginMutation, { refetchQueries:
+    [
+      {
+        query: Me,
+      },
+    ],
+  });
+
     const [{userName, password, resultMsg, isSubmitDisabled}, dispatch] =useReducer(userReducer, {
-        userName: "",
-        password: "",
+        userName: "tester1",
+        password: "Test123!@#",
         resultMsg: "",
-        isSubmitDisabled: true,
+        isSubmitDisabled: false,
     });
 
+    const {execMe, updateMe } = useRefreshReduxMe();
+
+    /*
     const reduxDispatch = useAppDispatch();
 
     useEffect(() =>{
@@ -27,7 +47,7 @@ const Login: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
             },
         });
     },[reduxDispatch]);
-
+    */
     const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch({type: "userName", payload: e.target.value});
         if(!e.target.value){
@@ -48,9 +68,17 @@ const Login: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
         }
     }
 
-    const onClickLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const onClickLogin = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         onClickToggle(e);
+        const result = await execLogin({
+          variables: {
+            userName,
+            password,
+          },
+        });
+        execMe();
+        updateMe();
       };
     
       const onClickCancel = (
