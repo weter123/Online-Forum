@@ -26,13 +26,13 @@ const UserProfile = () => {
 
     useEffect(() => {
       console.log("user", user);
-      if (user) {
+      if (user && user.user) {
         dispatch({
           type: "userName",
-          payload: user.userName,
+          payload: user.user.userName,
         });
 
-        getUserThreads(user.id).then((items)=>{
+        getUserThreads(user.user.id).then((items)=>{
             const threadItemsInThreadList: Array<ThreadItem> =[]
 
             const threadList = items.map((th: Thread)=>{
