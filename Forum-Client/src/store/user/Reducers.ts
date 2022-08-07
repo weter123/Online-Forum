@@ -1,16 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit'
+import User from '../../models/User';
 
 export const UserProfileSetType = "USER_PROFILE_SET";
 
 export interface UserProfileState{
-    id: string;
-    userName: string;
+    user: User | null;
 }
 
 
 const initialState: UserProfileState = {
-    id: '',
-    userName: ''
+    user : null,
 };
 
 export const userSlice = createSlice({
@@ -18,8 +17,7 @@ export const userSlice = createSlice({
     initialState,
     reducers:{
         userProfile: (state, action) => {
-            state.id = action.payload.id
-            state.userName =action.payload.username
+            state.user = action.payload;
         }
     }
 })
