@@ -1,6 +1,6 @@
 import { faUser, faRegistered, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {useAppSelector } from '../../../hooks/useHooks'
 
 import Registration from "../../auth/Registeration"
