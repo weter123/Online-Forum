@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import Category from "../../../models/Category";
+import CategorySelect from "../../CategorySelect";
 import "./MainHeader.css"
 interface MainHeaderProps {
     category?: Category;
@@ -11,7 +12,9 @@ const MainHeader: FC<MainHeaderProps> = ({category}) => {
 
     const getLabelElement = () => {
         if (width <= 768) {
-          return null;
+          return (
+            <CategorySelect navigate= {true} preselectedCategory ={ category} />
+          )
         } else {
           return <strong>{category?.name || "Placeholder"}</strong>;
         }
