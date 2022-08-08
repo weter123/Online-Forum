@@ -1,8 +1,5 @@
 import React, {useEffect,useState} from "react";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
-import Category from "../../models/Category"
-import { getCategories } from "../../services/DataServices";
-import { gql, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useHooks";
 

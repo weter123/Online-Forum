@@ -35,19 +35,6 @@ const Login: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
 
     const {execMe, updateMe } = useRefreshReduxMe();
 
-    /*
-    const reduxDispatch = useAppDispatch();
-
-    useEffect(() =>{
-        reduxDispatch({
-            type: UserProfileSetType,
-            payload: {
-                id:1,
-                username: "testUser"
-            },
-        });
-    },[reduxDispatch]);
-    */
     const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch({type: "userName", payload: e.target.value});
         if(!e.target.value){
