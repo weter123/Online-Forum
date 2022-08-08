@@ -86,7 +86,7 @@ export const logout = async (userName: string): Promise<string> => {
 export const me = async(id: string) : Promise<UserResult> => {
     const user = await User.findOne({
         where: { id},
-        relations: ["threads", "threads.threadItems"],
+        relations: ["threads", "threads.threadItems", "threadItems", "threadItems.thread"],
     });
 
     if(!user) {
@@ -103,6 +103,25 @@ export const me = async(id: string) : Promise<UserResult> => {
         user: user,
     };
 };
+
+export const changePassword = async (id: string, newPassword: string) : Promise<string> => {
+    const user = await User.findOne({
+        where: {id},
+    });
+
+    if(!user) {
+        return " User not found.";
+    }
+    if(!user.confirmed) {
+        return " User has not confirmed their registration email yet.";
+    }
+
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(newPassword,salt);
+    user.password = hashedPassword;
+    user.save();
+    return "Password changed successfully.";
+}
 
 function userNotFound(userName: string) {
     return `User with userName ${userName} not found.`;

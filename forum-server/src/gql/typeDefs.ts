@@ -92,6 +92,7 @@ const typeDefs =gql `
         logout(userName: String!): String!
         updateThreadPoint(userId: ID!, threadId: ID!, increment: Boolean): String!
         updateThreadItemPoint(userId: ID!, threadItemId: ID!, increment: Boolean): String!
+        changePassword(newPassword: String!) : String!
     }
     `;
 

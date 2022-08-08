@@ -7,7 +7,7 @@ import { ThreadCategory } from "../repo/ThreadCategory";
 import { updateThreadPoint } from "../repo/ThreadPointRepo";
 import { createThread, getThreadsByCategoryId, getThreadById, getThreadsLatest } from "../repo/ThreadRepo";
 import { User } from "../repo/User";
-import { login, logout, me, register, UserResult } from "../repo/UserRepo";
+import { changePassword, login, logout, me, register, UserResult } from "../repo/UserRepo";
 import { GqlContext } from "./GqlContext";
 
 const STANDARD_ERROR = "An error has occurred";
@@ -298,6 +298,28 @@ const resolvers: IResolvers = {
                 throw ex;
             }
         },
+        changePassword: async(
+            obj: any,
+            args: { newPassword: string },
+            ctx: GqlContext,
+            info: any
+          ): Promise<string> => {
+            try{
+                if(!ctx.req.session || !ctx.req.session?.userId) {
+                    return "You must be logged in to set likes.";
+                }
+                 let result = await changePassword(
+                    ctx.req.session.userId,
+                    args.newPassword
+                 );
+
+                 return result;
+            } catch (ex) {
+                throw ex;
+            }
+
+        },
+
     }
 };
 export default resolvers;
