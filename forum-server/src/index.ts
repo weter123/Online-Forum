@@ -3,10 +3,10 @@ import session from "express-session";
 import connectRedis from "connect-redis";
 import Redis from "ioredis";
 import { createConnection } from "typeorm";
-import { login, logout, register } from "./repo/UserRepo";
+//import { login, logout, register } from "./repo/UserRepo";
 import bodyParser from "body-parser";
-import { createThread, getThreadById, getThreadsByCategoryId } from "./repo/ThreadRepo";
-import { createThreadItem, getThreadItemsByThreadId } from "./repo/ThreadItemRepo";
+//import { createThread, getThreadById, getThreadsByCategoryId } from "./repo/ThreadRepo";
+//import { createThreadItem, getThreadItemsByThreadId } from "./repo/ThreadItemRepo";
 import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import typeDefs from "./gql/typeDefs";
 import resolvers from "./gql/resolvers";
@@ -63,156 +63,8 @@ const main = async() =>{
     );
 
     app.use(router);
-    router.get("/", (req, res, next) => {
-        req.session!.test = "hello";
-        res.send( `${req.session!.test }`);
-      });
 
-    router.post("/register", async(req,res,next)=> {
-        try{
-            console.log("params", req.body);
-            const userResult = await register(
-                req.body.email,
-                req.body.userName,
-                req.body.password
-            );
-            if(userResult && userResult.user){
-                res.send(`new user created, userId: ${ userResult.user.id}`);
-            }
-            else if( userResult && userResult.messages){
-                res.send(userResult.messages[0]);
-            }else{
-                next();
-            }
-        } catch (ex){
-            res.send(ex.message);
-        }
-    });
-
-    router.post("/login", async(req,res,next)=> {
-        try {
-            console.log("params", req.body);
-            const userResult = await login(
-                req.body.userName,
-                req.body.password
-            );
-            if(userResult && userResult.user){
-                req.session!.userId =userResult.user?.id;
-                res.send(`user logged in, userId: ${req.session!.userId}`)
-            } else if(userResult && userResult.messages){
-                res.send(userResult.messages[0]);
-            } else{
-                next();
-            }
-        } catch (ex){
-            res.send(ex.message)
-        }
-    });
-
-    router.post("/logout", async (req, res, next) => {
-        try {
-          console.log("params", req.body);
-          const msg = await logout(req.body.userName);
-          if (msg) {
-            req.session!.userId = null;
-            res.send(msg);
-          } else {
-            next();
-          }
-        } catch (ex) {
-          console.log(ex);
-          res.send(ex.message);
-        }
-      });
-
-    router.post("/createthread", async(req,res,next)=> {
-        try{
-            console.log("userId", req.session);
-            console.log("body", req.body);
-            const msg = await createThread(
-                req.session!.userId!,
-                req.body.categoryId,
-                req.body.title,
-                req.body.body  
-            );
-
-            res.send(msg);
-        } catch (ex){
-            console.log(ex);
-            res.send(ex.message);
-        }
-    });
-
-    router. post("/thread", async (req,res,next)=> {
-        try{
-            console.log(req.body.id);
-            const threadResult = await getThreadById(req.body.id);
-
-            if( threadResult && threadResult.entity ){
-                res.send(threadResult.entity.title);
-            } else if(threadResult && threadResult.messages){
-                res.send(threadResult.messages[0])
-            }
-        } catch (ex){
-            console.log(ex);
-            res.send(ex.message);
-        }
-    });
-
-    router.post("/threadsbycategory", async (req,res,next)=> {
-        try{
-            const threadResult = await getThreadsByCategoryId(req.body.categoryId);
-
-            if( threadResult && threadResult.entities){
-                let items ="";
-                threadResult.entities.forEach((th) => {
-                    items += th.title + ", ";
-                });
-                res.send(items);
-            } else if (threadResult && threadResult.messages){
-                res.send(threadResult.messages[0]);
-            }
-        } catch (ex){
-            console.log(ex);
-            res.send(ex.message);
-        }
-    });
-
-    router.post("/createthreaditem", async(req, res, next)=> {
-        try{
-            const msg = await createThreadItem(
-                req.session!.userId,
-                req.body.threadId,
-                req.body.body
-            );
-
-            res.send(msg);
-        } catch (ex){
-            console.log(ex);
-            res.send(ex.message);
-        }
-    });
-
-    router.post("/threadsitemsbythread", async (req,res,next)=>{
-        try{
-            const threadItemResult = await getThreadItemsByThreadId(
-                req.body.threadId
-            );
-
-            if(threadItemResult && threadItemResult.entities){
-                let items ="";
-                threadItemResult.entities.forEach((ti)=> {
-                    items += ti.body + ", ";
-                });
-                res.send(items);
-            } else if (threadItemResult && threadItemResult.messages){
-                res.send(threadItemResult.messages[0]);
-            }
-        } catch (ex) {
-            console.log(ex);
-            res.send(ex.message);
-        }
-    });
+    
 
     const schema = makeExecutableSchema({typeDefs,resolvers});
     const apolloServer = new ApolloServer({
