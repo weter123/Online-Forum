@@ -50,10 +50,10 @@ export class User extends Auditable{
     isDisabled: boolean;
 
     @OneToMany(() => Thread, (thread) => thread.user)
-    threads: Thread[];
+    public threads?: Thread[];
 
     @OneToMany(()=>ThreadItem, (threadItem) => threadItem.user)
-    threadItems:ThreadItem[];
+    public threadItems?:ThreadItem[];
 
     @OneToMany(()=> ThreadPoint, (threadPoint)=>{threadPoint.user})
     threadPoints: ThreadPoint[];
