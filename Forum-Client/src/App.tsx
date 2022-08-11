@@ -33,15 +33,6 @@ function App() {
 
   
   useEffect(() => {
-    /*
-    dispatch({
-      type: userProfile,
-      payload: {
-        id: 1,
-        userName: "testUser",
-      },
-    });
-    */
     if(categoriesData && categoriesData.getAllCategories) {
       dispatch({
         type: ThreadCategories,
