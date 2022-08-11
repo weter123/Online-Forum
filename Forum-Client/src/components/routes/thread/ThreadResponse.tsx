@@ -8,9 +8,10 @@ interface ThreadResponseProps {
     userName?: string;
     lastModifiedOn?: Date;
     points: number;
+    readOnly: boolean
 }
 
-const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn, points}) => {
+const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn, points, readOnly}) => {
     return(
         <div>
             <div>
@@ -20,7 +21,7 @@ const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn,
                 </span>            
             </div>
             <div className="thread-body-editor">
-                <RichEditor existingBody={body} />
+                <RichEditor existingBody={body} readOnly= {readOnly} />
             </div>
         </div>
     )

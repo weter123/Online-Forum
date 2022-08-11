@@ -26,21 +26,21 @@ const HOTKEYS: { [keyName: string]: string } = {
 const initialValue = [
   {
     type: "paragraph",
-    children: [{ text: "Enter your post here." }],
+    children: [{ text: "" }],
   },
 ];
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
 interface RichEditorProps {
   existingBody?: string;
+  readOnly?: boolean;
 }
 
-const RichEditor: FC<RichEditorProps> = ({ existingBody }) => {
+const RichEditor: FC<RichEditorProps> = ({ existingBody, readOnly = false }) => {
   const [value, setValue] = useState<Node[]>(initialValue);
   const renderElement = useCallback((props: any) => <Element {...props} />, []);
   const renderLeaf = useCallback((props: any) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-
   useEffect(() => {
     if (existingBody) {
       setValue([
@@ -50,7 +50,7 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody }) => {
         },
       ]);
     }
-  }, []);
+  }, [existingBody]);
 
   const onChangeEditorValue = (val: Node[]) => {
     setValue(val);
@@ -58,6 +58,7 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody }) => {
 
   return (
     <Slate editor={editor} value={value} onChange={onChangeEditorValue}>
+      {readOnly ? null : (
       <Toolbar>
         <MarkButton format="bold" icon="bold" />
         <MarkButton format="italic" icon="italic" />
@@ -68,11 +69,12 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody }) => {
         <BlockButton format="numbered-list" icon="list_numbered" />
         <BlockButton format="bulleted-list" icon="list_bulleted" />
       </Toolbar>
+      )}
       <Editable
         className="editor"
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder="Enter some rich text…"
+        placeholder="Enter your post here"
         spellCheck
         autoFocus
         onKeyDown={(event) => {
@@ -84,6 +86,7 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody }) => {
             }
           }
         }}
+        readOnly = {readOnly}
       />
     </Slate>
   );

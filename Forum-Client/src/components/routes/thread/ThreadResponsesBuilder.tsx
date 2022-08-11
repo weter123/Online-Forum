@@ -4,9 +4,10 @@ import ThreadResponse from "./ThreadResponse";
 
 interface ThreadResponsesBuilderProps{
     threadItems?:Array<ThreadItem>;
+    readOnly: boolean;
 }
 
-const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({threadItems}) => {
+const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({threadItems, readOnly}) => {
     const [responseElements,setResponseElements] = useState<JSX.Element | undefined>();
 
     useEffect(() => {
@@ -14,13 +15,13 @@ const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({threadItems}) 
             const thResponses = threadItems.map((ti) =>{
                 return(
                     <li key={`thr-${ti.id}`}>
-                        <ThreadResponse body={ti.body} userName={ti.userName} lastModifiedOn={ti.createdOn} points={ti.points} />
+                        <ThreadResponse body={ti.body} userName={ti.user.userName} lastModifiedOn={ti.createdOn} points={ti.points} readOnly= {readOnly} />
                     </li>
                 );
             });
             setResponseElements(<ul>{thResponses}</ul>)
         }
-    },[threadItems]);
+    },[threadItems, readOnly]);
 
     return(
         <div className="thread-body-container">
