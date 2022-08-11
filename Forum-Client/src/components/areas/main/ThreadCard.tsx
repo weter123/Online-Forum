@@ -14,7 +14,7 @@ const ThreadCard:FC<ThreadCardProps> = ({thread}) => {
     const navigate = useNavigate();
     const {width} = useWindowDimensions();
     const onClickShowThread = (e: React.MouseEvent<HTMLDivElement> )=> {
-        navigate("/thread" +thread.id);
+        navigate("/thread/" +thread.id);
     };
 
     const getPoints = (thread:Thread) => {
@@ -69,7 +69,7 @@ const ThreadCard:FC<ThreadCardProps> = ({thread}) => {
                         <strong>{thread.category.name}</strong>
                     </Link>
                     <span className="username-header" style={{marginLeft: ".5em"}} >
-                        {thread.userName}
+                        {thread.user.userName}
                     </span>
                 </div>
                 <div className="question">
