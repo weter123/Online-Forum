@@ -35,7 +35,6 @@ Future Todos:
   
   - update application to utilize the latest recommended dependencies when feasable.
   
-  - make the application mobile friendly.
   
   
 # Development Log
@@ -45,6 +44,12 @@ Future Todos:
 
 2022-08-04: created resolvers for updateThreadPont, updateThreadItemPoint, register, login, and logout. fixed bug that caused userId to remain undefined even when altered.
 
-2022-08-05:
+2022-08-05: utilized GraphQL queries and mutations to connect  register, login, and logout function calls in the server-side to the their Components in the client-side.
+
+2022-08-07: utilized GraphQL queries and mutations to fetch user data and enable change password functionality in the 
+
+2022-08-10: utilized GraphQL queries to fetch data threads and display them in the client. 
+
+2022-08-11:
 
 
