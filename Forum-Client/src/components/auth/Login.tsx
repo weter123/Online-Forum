@@ -3,13 +3,9 @@ import ReactModal from "react-modal";
 import {ModalProps} from "../types/ModalProps";
 import userReducer from "./common/UserReducer";
 import { allowSubmit } from "./common/Helpers";
-
-import  {UserProfileSetType}  from "../../store/user/Reducers"
-import { useAppDispatch } from "../../hooks/useHooks";
 import { gql, useMutation } from "@apollo/client";
 import useRefreshReduxMe, { Me } from "../../hooks/useRefreshReduxMe";
-import { exec } from "child_process";
-import { update } from "lodash";
+
 const LoginMutation = gql `
   mutation Login($userName:String!, $password: String!) {
     login(userName: $userName, password: $password)

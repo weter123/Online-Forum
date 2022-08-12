@@ -11,12 +11,16 @@ const UserNameAndTime: FC<UserNameAndTimeProps> =({
     userName,
     lastModifiedOn,
 }) =>{
-    console.log("lastModifiedOn2:", lastModifiedOn);
+    let date :string = "";
+    if( lastModifiedOn){
+        date =  getTimePastIfLessThanDay(lastModifiedOn);
+    }
+    
     return(
         <span>
             <strong>{userName}</strong>
             <label style={{marginLeft: "1em"}}>
-                {lastModifiedOn ? getTimePastIfLessThanDay(lastModifiedOn): ""}
+                {date}
             </label>
         </span>
     );

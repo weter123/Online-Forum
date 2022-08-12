@@ -100,8 +100,8 @@ const UserProfile = () => {
                     <div>
                         <PasswordComparison
                             dispatch={dispatch}
-                            password={password}
-                            passwordConfirm={passwordConfirm}
+                            password={password} 
+                            passwordConfirm={passwordConfirm}                            //passwordConfirm={passwordConfirm}
                         />
                         <button 
                             className="action-btn" 

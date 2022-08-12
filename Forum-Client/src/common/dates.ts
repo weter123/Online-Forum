@@ -1,6 +1,5 @@
 import {differenceInMinutes } from "date-fns";
 
-const StandardDateTimeFormat = "M/dd/yyyy";
 const getTimePastIfLessThanDay = (compTime: Date | null): string => {
   if (!compTime) return "";
 

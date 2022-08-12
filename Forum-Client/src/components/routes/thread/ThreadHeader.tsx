@@ -7,6 +7,7 @@ interface ThreadHeaderProps {
 }
 
 const ThreadHeader: FC<ThreadHeaderProps> = ({userName, lastModifiedOn, title}) => {
+
     return(
         <div className="thread-header-container">
             <h3>{title}</h3>
