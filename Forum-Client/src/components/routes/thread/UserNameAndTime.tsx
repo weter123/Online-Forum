@@ -1,3 +1,4 @@
+
 import React, { FC } from "react";
 import { getTimePastIfLessThanDay } from "../../../common/dates";
 
@@ -10,6 +11,7 @@ const UserNameAndTime: FC<UserNameAndTimeProps> =({
     userName,
     lastModifiedOn,
 }) =>{
+    console.log("lastModifiedOn2:", lastModifiedOn);
     return(
         <span>
             <strong>{userName}</strong>
