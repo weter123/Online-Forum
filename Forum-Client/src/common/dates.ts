@@ -5,7 +5,8 @@ const getTimePastIfLessThanDay = (compTime: Date | null): string => {
   if (!compTime) return "";
 
   const now = new Date();
-  const diffInMinutes = differenceInMinutes(now, compTime);
+  const then = new Date(compTime);
+  const diffInMinutes = differenceInMinutes(now, then);
   console.log("diff", diffInMinutes);
   if (diffInMinutes > 60) {
     if (diffInMinutes > 24 * 60) {
