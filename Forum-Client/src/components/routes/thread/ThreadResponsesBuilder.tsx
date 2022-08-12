@@ -15,7 +15,15 @@ const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({threadItems, r
             const thResponses = threadItems.map((ti) =>{
                 return(
                     <li key={`thr-${ti.id}`}>
-                        <ThreadResponse body={ti.body} userName={ti.user.userName} lastModifiedOn={ti.createdOn} points={ti.points} readOnly= {readOnly} />
+                        <ThreadResponse 
+                            body={ti.body} 
+                            userName={ti.user.userName} 
+                            lastModifiedOn={ti.createdOn} 
+                            points={ti.points} 
+                            readOnly= {readOnly} 
+                            threadItemId = {ti?.id || "0"}
+                            
+                            />
                     </li>
                 );
             });
