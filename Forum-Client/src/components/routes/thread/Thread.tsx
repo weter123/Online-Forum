@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Thread.css"
 import ThreadModal from "../../../models/Thread";
-import { getThreadById } from "../../../services/DataServices";
 import Nav from "../../areas/Nav";
 import ThreadHeader from "./ThreadHeader";
 import ThreadCategory from "./ThreadCategory";
@@ -11,6 +10,8 @@ import ThreadBody from "./ThreadBody";
 import ThreadResponsesBuilder from "./ThreadResponsesBuilder";
 import ThreadPointsBar from "../../points/ThreadPointsBar";
 import { gql, useLazyQuery } from "@apollo/client";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import ThreadPointsInline from "../../points/ThreadPointInline";
 
 const GetThreadById = gql `
     query GetThreadById($id: ID!) {
@@ -21,6 +22,7 @@ const GetThreadById = gql `
         ... on Thread {
             id
             user {
+                id
                 userName
             }
             lastModifiedOn
@@ -36,6 +38,7 @@ const GetThreadById = gql `
                 body
                 points
                 user {
+                    id
                     userName
                 }
             }
@@ -44,10 +47,26 @@ const GetThreadById = gql `
 }
 `;
 const Thread= () => {
-    const [execGetThreadById, {data: threadData}] = useLazyQuery(GetThreadById)
+    const { width } = useWindowDimensions();
+    const [execGetThreadById, {data: threadData}] = useLazyQuery(GetThreadById, {fetchPolicy: "no-cache"})
     const [thread,setThread] = useState<ThreadModal | undefined>();
     const{id} = useParams();
     const [readOnly, setReadOnly] = useState(false);
+
+    const refreshThread = () =>{
+        console.log("Thread id", id);
+      
+        if(id){
+            const idNum:number = +id;
+            if( idNum >0){
+                execGetThreadById( {
+                    variables: {
+                        id,
+                    },
+                });
+            }
+        }
+    };
 
     useEffect(() =>{
         console.log("Thread id", id);
@@ -68,9 +87,11 @@ const Thread= () => {
          console.log("threadData", threadData);
          if(threadData && threadData.getThreadById) {
             setThread(threadData.getThreadById);
+            setReadOnly(true);
          }
          else{
             setThread(undefined)
+            setReadOnly(false);
          }
     },[threadData])
 
@@ -80,7 +101,16 @@ const Thread= () => {
                 <Nav />
             </div>
             <div className="thread-content-container">
+                    
                 <div className="thread-content-post-container">
+                    {width <= 768 && thread ? (
+                        <ThreadPointsInline
+                            points={thread?.points || 0}
+                            threadId={thread?.id}
+                            refreshThread={refreshThread}
+                            allowUpdatePoints={true}
+                        />
+                    ) : null}
                     <ThreadHeader
                         userName={thread?.user.userName}
                         lastModifiedOn={thread ? thread.lastModifiedOn : new Date()}
@@ -94,6 +124,9 @@ const Thread= () => {
                     <ThreadPointsBar
                         points={thread?.points || 0}
                         responseCount ={thread && thread.threadItems && thread.threadItems.length}
+                        threadId = {thread?.id || "0"}
+                        allowUpdatePoints = {true}
+                        refreshThread = {refreshThread}
                     />
                 </div>
                 <div className="thread-content-response-container" >
