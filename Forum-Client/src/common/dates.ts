@@ -1,4 +1,4 @@
-import { format, differenceInMinutes } from "date-fns";
+import {differenceInMinutes } from "date-fns";
 
 const StandardDateTimeFormat = "M/dd/yyyy";
 const getTimePastIfLessThanDay = (compTime: Date | null): string => {
@@ -10,7 +10,7 @@ const getTimePastIfLessThanDay = (compTime: Date | null): string => {
   console.log("diff", diffInMinutes);
   if (diffInMinutes > 60) {
     if (diffInMinutes > 24 * 60) {
-      return format(compTime, StandardDateTimeFormat);
+      return Math.round(diffInMinutes / (24 * 60)) +" days ago";
     }
     return Math.round(diffInMinutes / 60) + "h ago";
   }
