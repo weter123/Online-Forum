@@ -13,6 +13,7 @@ interface PasswordComparisonProps {
 
   const PasswordComparison: FC<PasswordComparisonProps> = ({ dispatch, password, passwordConfirm}) => {
     const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>{
+        console.log(e.target.value);
         dispatch({type: "password", payload: e.target.value});
         const PasswordCheck: PasswordTestResult = isPasswordValid(e.target.value);
         if(!PasswordCheck.isValid){
@@ -22,8 +23,9 @@ interface PasswordComparisonProps {
         passwordsSame(passwordConfirm,e.target.value);
     };
     const onChangePasswordConfirm = (e: React.ChangeEvent<HTMLInputElement>) =>{
+        console.log(e.target.value);
         dispatch({type: "passwordConfirm", payload: e.target.value});
-        passwordsSame(passwordConfirm,e.target.value);
+        passwordsSame(password,e.target.value);
     };
     const passwordsSame = (passwordVal: string, passwordConfirmVal: string) =>{
         if(passwordVal !== passwordConfirmVal){
