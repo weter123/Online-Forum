@@ -1,9 +1,13 @@
 
 import { IResolvers } from "apollo-server-express"
+import CategoryThread from "../repo/CategoryThread";
+import { getTopCategoryThread } from "../repo/CategoryThreadRepo";
 import { QueryArrayResult, QueryOneResult } from "../repo/QueryArrayResult";
 import { Thread } from "../repo/Thread";
 import { getAllCategories } from "../repo/ThreadCategoriesRepo";
 import { ThreadCategory } from "../repo/ThreadCategory";
+import { ThreadItem } from "../repo/ThreadItem";
+import { createThreadItem, getThreadItemsByThreadId } from "../repo/ThreadItemRepo";
 import { updateThreadPoint } from "../repo/ThreadPointRepo";
 import { createThread, getThreadsByCategoryId, getThreadById, getThreadsLatest } from "../repo/ThreadRepo";
 import { User } from "../repo/User";
@@ -25,6 +29,14 @@ const resolvers: IResolvers = {
             return "User";
         },
     },
+    ThreadItemResult: {
+        __resolveType(obj: any, context: GqlContext, info: any) {
+            if (obj.messages) {
+                return "EntityResult";
+            }
+            return "ThreadItem";
+        },
+    },
     ThreadResult: {
         __resolveType(obj: any, context:GqlContext, info :any){
             if(obj.messages){
@@ -42,7 +54,14 @@ const resolvers: IResolvers = {
             return "ThreadArray";
         },
     },
-
+    ThreadItemArrayResult: {
+        __resolveType(obj: any, context: GqlContext, info: any) {
+            if (obj.messages) {
+                return "EntityResult";
+            }
+            return "ThreadItemArray";
+        },
+    },
     Query: {
         getThreadById: async (
             obj: any,
@@ -105,6 +124,31 @@ const resolvers: IResolvers = {
                 throw ex;
             }
         },
+
+        getThreadItemByThreadId: async (
+            obj: any,
+            args: { threadId: string },
+            ctx: GqlContext,
+            info: any
+          ): Promise<{ threadItems: Array<ThreadItem> } | EntityResult> => {
+            let threadItems: QueryArrayResult<ThreadItem>;
+            try {
+              threadItems = await getThreadItemsByThreadId(args.threadId);
+              if (threadItems.entities) {
+                return {
+                  threadItems: threadItems.entities,
+                };
+              }
+              return {
+                messages: threadItems.messages
+                  ? threadItems.messages
+                  : [STANDARD_ERROR],
+              };
+            } catch (ex) {
+              throw ex;
+            }
+          },
+          
         getAllCategories: async (
             obj: any,
             args: null,
@@ -147,6 +191,20 @@ const resolvers: IResolvers = {
             } catch (ex) {
               throw ex;
             }
+        },
+
+        getTopCategoryThread: async (
+            obj: any,
+            args: null,
+            ctx: GqlContext,
+            info: any
+        ): Promise<Array<CategoryThread>> => {
+            try {
+              return await getTopCategoryThread();
+            } catch (ex) {
+              console.log(ex.message);
+              throw ex;
+            }
           },
     },
 
@@ -178,6 +236,23 @@ const resolvers: IResolvers = {
                 throw ex;
             }
         },
+        createThreadItem: async (
+            obj: any,
+            args: { userId: string; threadId: string; body: string },
+            ctx: GqlContext,
+            info: any
+          ): Promise<EntityResult> => {
+            let result: QueryOneResult<ThreadItem>;
+            try {
+              result = await createThreadItem(args.userId, args.threadId, args.body);
+              return {
+                messages: result.messages ? result.messages : [STANDARD_ERROR],
+              };
+            } catch (ex) {
+              console.log(ex);
+              throw ex;
+            }
+          },
         updateThreadPoint: async(
             obj: any,
             args : {

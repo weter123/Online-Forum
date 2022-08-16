@@ -62,7 +62,15 @@ const typeDefs =gql `
         lastModifiedBy: String!
         lastModifiedOn: Date!
     }
-    
+
+    union ThreadItemResult = ThreadItem | EntityResult
+
+    type ThreadItemArray {
+        threadItems: [ThreadItem!]
+    }
+
+    union ThreadItemArrayResult = ThreadItemArray | EntityResult
+
     type ThreadCategory {
         id: ID!
         name: String!
@@ -73,13 +81,45 @@ const typeDefs =gql `
         lastModifiedBy: String!
         lastModifiedOn: Date!
     }
+
+    type ThreadPoint {
+        id: ID!
+        isDecrement: Boolean!
+        user: User!
+        thread: Thread!
+        createdBy: String!
+        createdOn: Date!
+        lastModifiedBy: String!
+        lastModifiedOn: Date!
+    }
+    
+    type ThreadItemPoint {
+        id: ID!
+        isDecrement: Boolean!
+        user: User!
+        threadItem: ThreadItem!
+        createdBy: String!
+        createdOn: Date!
+        lastModifiedBy: String!
+        lastModifiedOn: Date!
+    }
+
+    type CategoryThread {
+        threadId: ID!
+        categoryId: ID!
+        categoryName: String!
+        title: String!
+        titleCreatedOn: Date!
+    }
     
     type Query {
         getThreadById(id: ID!): ThreadResult
         getThreadsByCategoryId(categoryId: ID!) : ThreadArrayResult!
         getThreadsLatest: ThreadArrayResult!
+        getThreadItemByThreadId(threadId: ID!): ThreadItemArrayResult!
         getAllCategories: [ThreadCategory!]
         me: UserResult!
+        getTopCategoryThread: [CategoryThread!]
     }
 
     type Mutation {
@@ -89,6 +129,7 @@ const typeDefs =gql `
             title: String
             body: String!
         ): EntityResult
+        createThreadItem(userId: ID!, threadId: ID!, body: String): EntityResult
         register(email: String!, userName: String!, password: String!): String!
         login(userName: String!, password: String!) : String!
         logout(userName: String!): String!
