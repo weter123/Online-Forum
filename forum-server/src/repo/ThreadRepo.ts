@@ -65,7 +65,7 @@ export const createThread = async(
     }
 
     return {
-        messages: ["Thread created successfully."],
+        messages: [thread.id],
     };
 };
 
@@ -116,6 +116,7 @@ export const getThreadsLatest = async() : Promise<QueryArrayResult<Thread>> => {
     const threads = await Thread.createQueryBuilder("thread")
     .leftJoinAndSelect("thread.category","category")
     .leftJoinAndSelect("thread.threadItems", "threadItems")
+    .leftJoinAndSelect("thread.user", "user")
     .orderBy("thread.createdOn", "DESC")
     .take(10)
     .getMany();
