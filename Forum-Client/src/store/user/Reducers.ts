@@ -4,12 +4,16 @@ import User from '../../models/User';
 export const UserProfileSetType = "USER_PROFILE_SET";
 
 export interface UserProfileState{
-    user: User | null;
+    user: User;
 }
 
 
 const initialState: UserProfileState = {
-    user : null,
+    user : {
+        id: "0",
+        email: "",
+        userName: "",
+    },
 };
 
 export const userSlice = createSlice({
