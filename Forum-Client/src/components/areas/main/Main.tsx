@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MainHeader from "./MainHeader";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ThreadCard from "./ThreadCard";
 import Category from "../../../models/Category";
 import { gql, useLazyQuery } from "@apollo/client";
@@ -84,9 +84,10 @@ const Main = () => {
     const {categoryId} = useParams();
     const [category,setCategory] = useState<Category | undefined>();
     const [threadCards, setThreadCards] = useState<Array<JSX.Element> | null>(null);
-    console.log(categoryId);
+   
+    const navigate = useNavigate();
     useEffect(()=> {
-        
+        console.log(categoryId);
         if(categoryId){
             let catNum: number = +categoryId;
             if( catNum > 0){
@@ -104,25 +105,12 @@ const Main = () => {
         
     }, [categoryId]);
 
-    useEffect(() => {
-        if( threadsByCatData && threadsByCatData.getThreadsByCategoryId && threadsByCatData.getThreadsByCategoryId.threads) {
-            const threads = threadsByCatData.getThreadsByCategoryId.threads;
-
-            const cards = threads.map((th: any) => {
-                return <ThreadCard key= {`thread-${th.id}`} thread={th} />
-            });
-
-            setCategory(threads[0].category);
-            setThreadCards(cards);
-        }
-    }, [threadsByCatData]);
-
     useEffect(()=> {
+        console.log("Main threadsByLatestData", threadsLatestData);
         if( threadsLatestData &&
             threadsLatestData.getThreadsLatest &&
             threadsLatestData.getThreadsLatest.threads) {
                 const threads = threadsLatestData.getThreadsLatest.threads;
-
                 const cards = threads.map((th: any) => {
                     return <ThreadCard key= {`thread-${th.id}`} thread={th} />
                 });
@@ -131,11 +119,36 @@ const Main = () => {
                 setThreadCards(cards);
             }
     }, [threadsLatestData]);
+    
+    useEffect(() => {
+        console.log("Main threadsByCatData", threadsByCatData);
+        if( threadsByCatData && threadsByCatData.getThreadsByCategoryId && 
+            threadsByCatData.getThreadsByCategoryId.threads) {
+            const threads = threadsByCatData.getThreadsByCategoryId.threads;
+            const cards = threads.map((th: any) => {
+                return <ThreadCard key= {`thread-${th.id}`} thread={th} />
+            });
 
+            setCategory(threads[0].category);
+            setThreadCards(cards);
+        } else{
+            setCategory(undefined);
+            setThreadCards(null);
+        }
+    }, [threadsByCatData]);
+
+    
+
+    const onClickPostThread =() => {
+        navigate("/thread", {replace : true});
+    }
     return (
         <main className="content">
-          <MainHeader category={category} />
-          <div>{threadCards}</div>
+            <button className= "action-btn" onClick ={onClickPostThread}>
+                Post
+            </button>
+            <MainHeader category={category} />
+            <div>{threadCards}</div>
         </main>
       );
 }
