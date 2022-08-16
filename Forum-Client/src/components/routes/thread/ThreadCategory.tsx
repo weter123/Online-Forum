@@ -3,10 +3,10 @@ import Category from "../../../models/Category";
 import CategorySelect from "../../CategorySelect";
 interface ThreadCategoryProps {
     category?: Category;
-
+    sendOutSelectedCategory: (cat: Category) => void;
 }
 
-const ThreadCategory: FC<ThreadCategoryProps> = ({category}) => {
+const ThreadCategory: FC<ThreadCategoryProps> = ({category, sendOutSelectedCategory}) => {
 
     return(
         <div className ="thread-category-container">
@@ -14,7 +14,7 @@ const ThreadCategory: FC<ThreadCategoryProps> = ({category}) => {
             <div style = {{ marginTop : "1em"}}>
                 <CategorySelect
                     preselectedCategory={category}
-                    //sendOutSelectedCategory={sendOutSelectedCategory}
+                    sendOutSelectedCategory={sendOutSelectedCategory}
                 />
             </div>
         </div>

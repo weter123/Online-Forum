@@ -17,6 +17,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./RichEditor.css";
 
+export const getTextFromNodes = (nodes: Node[]) => {
+  return nodes.map((n: Node)=> Node.string(n)).join("\n");
+}
 const HOTKEYS: { [keyName: string]: string } = {
   "mod+b": "bold",
   "mod+i": "italic",
@@ -29,14 +32,16 @@ const initialValue = [
     children: [{ text: "" }],
   },
 ];
+
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
 class RichEditorProps {
   existingBody?: string;
   readOnly?: boolean = false;
+  sendOutBody?: (body:Node[]) => void;
 }
 
-const RichEditor: FC<RichEditorProps> = ({ existingBody, readOnly }) => {
+const RichEditor: FC<RichEditorProps> = ({ existingBody, readOnly, sendOutBody}) => {
   const [value, setValue] = useState<Node[]>(initialValue);
   const renderElement = useCallback((props: any) => <Element {...props} />, []);
   const renderLeaf = useCallback((props: any) => <Leaf {...props} />, []);
@@ -54,6 +59,7 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody, readOnly }) => {
 
   const onChangeEditorValue = (val: Node[]) => {
     setValue(val);
+    sendOutBody && sendOutBody(val);
   };
 
   return (
@@ -74,7 +80,7 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody, readOnly }) => {
         className="editor"
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder="Enter your post here"
+        placeholder="Enter your post here."
         spellCheck
         autoFocus
         onKeyDown={(event) => {

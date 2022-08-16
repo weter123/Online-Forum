@@ -5,6 +5,7 @@ import "./ThreadCard.css"
 import {faEye, faHeart, faReplyAll} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import RichEditor from "../../editor/RichEditor";
 
 interface ThreadCardProps{
     thread:Thread;
@@ -85,7 +86,7 @@ const ThreadCard:FC<ThreadCardProps> = ({thread}) => {
                         onClick ={onClickShowThread}
                         data-thread-id = {thread.id}
                         >
-                        <div>{thread.body}</div>
+                        <RichEditor existingBody={thread.body} readOnly = {true} />
                     </div>
                     <div className="threadcard-footer">
                         <span style={{ marginRight: ".5em"}}>
