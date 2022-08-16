@@ -6,7 +6,6 @@ import { Route, Routes} from 'react-router-dom';
 import UserProfile from './components/routes/UserProfile';
 import { gql, useQuery } from '@apollo/client';
 import { useAppDispatch } from './hooks/useHooks';
-import { userProfile } from './store/user/Reducers';
 import { ThreadCategories } from './store/categories/Reducer';
 import useRefreshReduxMe from './hooks/useRefreshReduxMe';
 

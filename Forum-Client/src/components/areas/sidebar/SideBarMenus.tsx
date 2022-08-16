@@ -2,7 +2,6 @@ import { faUser, faRegistered, faSignInAlt, faSignOutAlt } from '@fortawesome/fr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import {useAppSelector } from '../../../hooks/useHooks'
-
 import Registration from "../../auth/Registeration"
 import Login from '../../auth/Login';
 import Logout from '../../auth/Logout';

@@ -1,4 +1,4 @@
-import React, { FC, useReducer, useEffect } from "react";
+import React, { FC, useReducer} from "react";
 import ReactModal from "react-modal";
 import {ModalProps} from "../types/ModalProps";
 import userReducer from "./common/UserReducer";
