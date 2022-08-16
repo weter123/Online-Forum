@@ -46,7 +46,8 @@ function App() {
     <Routes>
       <Route  path="/" element = {<Home  />} />
       <Route path="/categorythreads/:categoryId" element = {<Home  />} />
-      <Route path="/thread/:id" element = {<Thread />} />
+      <Route path="/thread/:id?" element = {<Thread />} />
+      <Route path="/thread" element = {<Thread />} />
       <Route path="/userprofile/:id" element = {<UserProfile />} />
     </Routes>
 
