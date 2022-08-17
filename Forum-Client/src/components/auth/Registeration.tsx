@@ -15,8 +15,6 @@ import PasswordComparison from "./common/PasswordComparison";
              isSubmitDisabled: true,
         });
 
-       
-
         const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
             dispatch({type: "userName", payload: e.target.value});
             if(!e.target.value){
@@ -74,14 +72,18 @@ import PasswordComparison from "./common/PasswordComparison";
                         <div className="form-buttons">
                             <div className="form-btn-left">
                                 <button
-                                style={{marginLeft: ".5em"}}
-                                className="action-btn"
-                                disabled ={isSubmitDisabled}
-                                onClick ={onClickRegister}>Register</button>
+                                    style={{marginLeft: ".5em"}}
+                                    className="action-btn"
+                                    disabled ={isSubmitDisabled}
+                                    onClick ={onClickRegister}>
+                                        Register
+                                </button>
                                 <button
-                                style={{marginLeft: ".5em"}}
-                                className="cancel-btn"
-                                onClick ={onClickCancel}>Close</button>
+                                    style={{marginLeft: ".5em"}}
+                                    className="cancel-btn"
+                                    onClick ={onClickCancel}>
+                                        Close
+                                </button>
                             </div>
                             <span className="form-btn-right">
                                 <strong>{resultMsg}</strong>
