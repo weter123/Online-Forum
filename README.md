@@ -44,7 +44,7 @@ Future Todos:
 
 2022-08-04: Created resolvers for updateThreadPont, updateThreadItemPoint, register, login, and logout. fixed bug that caused userId to remain undefined even when altered.
 
-2022-08-05: created GraphQL queries and mutations to connect  register, login, and logout function calls in the server-side to the their Components in the client-side.
+2022-08-05: Connected the Client-side to The Server-side using Apollo Client
 
 2022-08-07: Utilized GraphQL queries and mutations to fetch user data and enable change password functionality in the 
 
