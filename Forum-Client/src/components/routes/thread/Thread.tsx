@@ -16,6 +16,7 @@ import Category from "../../../models/Category";
 import { useAppSelector } from "../../../hooks/useHooks";
 import { getTextFromNodes } from "../../editor/RichEditor";
 import { Node } from "slate";
+import ThreadResponse from "./ThreadResponse";
 
 const GetThreadById = gql `
     query GetThreadById($id: ID!) {
@@ -82,10 +83,7 @@ const threadReducer = (state: any, action: any) => {
         case "bodyNode":
             return {...state, bodyNode: action.payload};
         default : 
-        throw new Error("Unknown action type");
-        
-
-        
+            throw new Error("Unknown action type");
     }
 }
 const Thread= () => {
@@ -94,7 +92,7 @@ const Thread= () => {
     const [execCreateThread] = useMutation(CreateThread);
     const [thread,setThread] = useState<ThreadModal | undefined>();
     const{id} = useParams();
-    const [readOnly, setReadOnly] = useState(false);
+    const [readOnly, setReadOnly] = useState(true);
     const [postMsg, setPostMsg] = useState("");
     const user = useAppSelector((state) => state.user);
     const [ { 
@@ -231,8 +229,7 @@ const Thread= () => {
             <div className="thread-nav-container">
                 <Nav />
             </div>
-            <div className="thread-content-container">
-                    
+            <div className="thread-content-container">     
                 <div className="thread-content-post-container">
                     {width <= 768 && thread ? (
                         <ThreadPointsInline
@@ -278,11 +275,31 @@ const Thread= () => {
                         refreshThread = {refreshThread}
                     />
                 </div>
+            </div>
+            {thread ? (
+                <div className="thread-content-response-container">
+                    <hr className="thread-section-divider" />
+                    <div style={{ marginBottom: ".5em" }}>
+                        <strong>Post Response</strong>
+                    </div>
+                    <ThreadResponse
+                        body={""}
+                        userName={user.user.userName}
+                        lastModifiedOn={new Date()}
+                        points={0}
+                        readOnly={false}
+                        threadItemId={"0"}
+                        thread={thread}
+                        refreshThread={refreshThread}
+                    />
+                </div>
+            ) : null}
+            {thread ? (
                 <div className="thread-content-response-container" >
                     <hr className="thread-section-divider" />
                     <ThreadResponsesBuilder threadItems={thread?.threadItems} readOnly = {readOnly} />
                 </div>
-            </div>
+            ) : null}
         </div>
       );
 };
