@@ -21,13 +21,13 @@ const SideBarMenus = () => {
         setShowRegister(!showRegister);
     };
     const onClickToggleLogin = () => {
-        setShowLogin(!showRegister);
+        setShowLogin(!showLogin);
     };
 
     const onClickToggleLogout = () => {
-        setShowLogout(!showRegister);
-        console.log(user);
+        setShowLogout(!showLogout);
     };
+
     return(
         <React.Fragment>
             <ul>
@@ -44,9 +44,12 @@ const SideBarMenus = () => {
                         <FontAwesomeIcon icon= {faRegistered} />
                         <span onClick={onClickToggleRegister} className='menu-name'>
                             register
-                            <Registration isOpen={showRegister}
-                            onClickToggle={onClickToggleRegister} />
                         </span>
+                        <Registration 
+                            isOpen={showRegister}
+                            onClickToggle={onClickToggleRegister} 
+                        />
+                        
                     </li>
                 )}
 

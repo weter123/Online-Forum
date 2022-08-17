@@ -89,9 +89,7 @@ const Main = () => {
     useEffect(()=> {
         console.log(categoryId);
         if(categoryId){
-            let catNum: number = +categoryId;
-            if( catNum > 0){
-                console.log("exec cat");
+            if( +categoryId> 0){
             execGetThreadsByCat({
                 variables: {
                     categoryId,
@@ -99,7 +97,6 @@ const Main = () => {
             });
             }
         } else {
-            console.log("late cat");
             execGetThreadsLatest();
         }
         
