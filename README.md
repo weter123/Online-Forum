@@ -44,22 +44,24 @@ Future Todos:
 # Development Log
 2022-08-02: Committed Client and Server folders into the repository. setting up GraphQL on the server side.
 
-2022-08-03: Completed base setup of GraphQL. created typedef, resolvers and function calls for createThread, getThreadById and getThreadByCategoryID calls. Working on updateThreadPoint Call.
+2022-08-03: Completed base setup of GraphQL. created typedefs, resolvers and function calls for createThread, getThreadById and getThreadByCategoryID calls. Working on updateThreadPoint Call.
 
 2022-08-04: Created typedef, resolvers and function calls for updateThreadPont, updateThreadItemPoint, register, login, and logout. fixed bug that caused userId to remain undefined even when altered.
 
-2022-08-05: Connected the Client-side to The Server-side using Apollo Client.  created resolver. TypeDef and Function call for getAllCategories
+2022-08-05: Connected the client-side to The server-side using Apollo Client.  created resolver. TypeDef and Function call for getAllCategories
 
-2022-08-06: Created and updated DefTypes, Resolvers and function calls getThreadLatest and getThreadsByCategoryId. implemented thier gql queries in Main Component.
+2022-08-06: Created and updated DefTypes, Resolvers and function calls getThreadLatest and getThreadsByCategoryId. Set up their gql queries in the client.
 
-2022
+2022-08-07: Set up  GraphQL queries for Login Logout and getGategories in the client. created categoryReducer and made Changes to userReducer to accomidate the gql queries.
 
-2022-08-07: Utilized GraphQL queries and mutations to fetch user data and enable change password functionality in the 
+2022-08-08:   Created and updated DefType, Resolver and function call changePassword. set up GraphQL Mutation for change Password in client. found bug that prevented input change in the Password Confirm input field.
+
+2022-08-09: Update Thread and ThreadItem Objects to accomidate points system and the changes made to User Object and userReducer. Set up getThreadById GraphQL Query.
 
 2022-08-10: Utilized GraphQL queries to fetch data threads and display them in the client. 
 
 2022-08-16: Completed the Project -> Require Debugging
 
-2022-08-17: fixed bugs in Registeration and PasswordComparsion components. fixed bug that crashed the website when uing Thread route/s
+2022-08-17: fixed bugs in Registeration and PasswordComparsion components. fixed bug that crashed the website when using Thread route/s
 
 
