@@ -1,4 +1,4 @@
-//import Thread from "./Thread";
+import Thread from "./Thread";
 import User from "./User";
 
 export default class ThreadItem {
@@ -9,6 +9,6 @@ export default class ThreadItem {
     public body: string,
     public user: User,
     public createdOn: Date,
-    public threadId: string,
+    public thread: Thread,
   ) {}
 }

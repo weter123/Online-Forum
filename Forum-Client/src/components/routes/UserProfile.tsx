@@ -51,8 +51,8 @@ const UserProfile = () => {
             );
 
             const threadItemList = user.user.threadItems?.map((ti: ThreadItem) => (
-                <li key={`user-th-${ti.threadId}`}>
-                    <Link to={`/thread/${ti.threadId}`} className="userprofile-link">
+                <li key={`user-th-${ti.thread.id}`}>
+                    <Link to={`/thread/${ti.thread.id}`} className="userprofile-link">
                         {ti.body.length <= 40 ? ti.body : ti.body.substring(0.40) + " ..."}
                     </Link>
                 </li>
@@ -120,7 +120,7 @@ const UserProfile = () => {
                         <strong>Threads Posted</strong>
                         {threads}
                     </div>
-                    <div className="userprofile-threadIems">
+                    <div className="userprofile-threadItems">
                         <strong>ThreadItems Posted</strong>
                         {threadItems}
                     </div>

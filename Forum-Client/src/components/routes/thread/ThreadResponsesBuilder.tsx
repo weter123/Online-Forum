@@ -5,12 +5,14 @@ import ThreadResponse from "./ThreadResponse";
 interface ThreadResponsesBuilderProps{
     threadItems?:Array<ThreadItem>;
     readOnly: boolean;
+    refreshThread?: () => void;
 }
 
-const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({threadItems, readOnly}) => {
+const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({threadItems, readOnly, refreshThread}) => {
     const [responseElements,setResponseElements] = useState<JSX.Element | undefined>();
 
     useEffect(() => {
+        
         if(threadItems){
             const thResponses = threadItems.map((ti) =>{
                 return(
@@ -22,8 +24,9 @@ const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({threadItems, r
                             points={ti.points} 
                             readOnly= {readOnly} 
                             threadItemId = {ti?.id || "0"}
-                            
-                            />
+                            thread ={ti.thread}
+                            refreshThread={refreshThread}
+                        />
                     </li>
                 );
             });

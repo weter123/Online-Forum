@@ -5,6 +5,7 @@ import ThreadPointsInline from "../../points/ThreadPointInline";
 import { gql, useMutation } from "@apollo/client";
 import { useAppSelector } from "../../../hooks/useHooks";
 import {Node} from "slate";
+import Thread from "../../../models/Thread";
 
 const CreateThreadItem = gql`
     mutation createThreadItem(
@@ -29,11 +30,11 @@ interface ThreadResponseProps {
     points: number;
     readOnly: boolean;
     threadItemId: string;
-    threadId?:string;
+    thread?: Thread;
     refreshThread?: () => void;
 }
 
-const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn, points, readOnly, threadItemId, threadId, refreshThread,}) => {
+const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn, points, readOnly, threadItemId, thread, refreshThread,}) => {
     const user = useAppSelector(state => state.user);
     const [execCreateThreadItem] = useMutation(CreateThreadItem);
     const [postMsg, setPostMsg] = useState("");
@@ -52,7 +53,7 @@ const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn,
     
         if (!user) {
             setPostMsg("Please login before adding a response.");
-        } else if (!threadId) {
+        } else if (!thread) {
             setPostMsg("A parent thread must exist before a response can be posted.");
         } else if (!bodyToSave) {
             setPostMsg("Please enter some text.");
@@ -60,7 +61,7 @@ const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn,
             await execCreateThreadItem({
                 variables: {
                     userId: user ? user.user.id : "0",
-                    threadId,
+                    threadId : thread.id,
                     body: bodyToSave,
                 },
             });
@@ -98,7 +99,7 @@ const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn,
                     sendOutBody = {receiveBody}
                 />
             </div>
-            {!readOnly &&threadId ? (
+            {!readOnly && thread ? (
                 <>
                     <div style={{ marginTop: ".5em" }}>
                         <button className="action-btn" onClick={onClickPost}>
