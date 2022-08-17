@@ -28,7 +28,9 @@ due to issue with installation, I am using react-select instead of react-dropdow
 Current Todos:
 
   - Fix Remianing Bugs in the project:
+  
       - Point System
+      
       - RichEditor
 
 Future Todos:
@@ -42,11 +44,15 @@ Future Todos:
 # Development Log
 2022-08-02: Committed Client and Server folders into the repository. setting up GraphQL on the server side.
 
-2022-08-03: Completed base setup of GraphQL. created resolvers for createThread, getThreadById and getThreadByCategoryID calls. Working on updateThreadPoint Call.
+2022-08-03: Completed base setup of GraphQL. created typedef, resolvers and function calls for createThread, getThreadById and getThreadByCategoryID calls. Working on updateThreadPoint Call.
 
-2022-08-04: Created resolvers for updateThreadPont, updateThreadItemPoint, register, login, and logout. fixed bug that caused userId to remain undefined even when altered.
+2022-08-04: Created typedef, resolvers and function calls for updateThreadPont, updateThreadItemPoint, register, login, and logout. fixed bug that caused userId to remain undefined even when altered.
 
-2022-08-05: Connected the Client-side to The Server-side using Apollo Client
+2022-08-05: Connected the Client-side to The Server-side using Apollo Client.  created resolver. TypeDef and Function call for getAllCategories
+
+2022-08-06: Created and updated DefTypes, Resolvers and function calls getThreadLatest and getThreadsByCategoryId. implemented thier gql queries in Main Component.
+
+2022
 
 2022-08-07: Utilized GraphQL queries and mutations to fetch user data and enable change password functionality in the 
 
