@@ -47,13 +47,16 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody, readOnly, sendOutBody})
   const renderLeaf = useCallback((props: any) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   useEffect(() => {
+    console.log(existingBody);
     if (existingBody) {
+      //setValue(JSON.parse(existingBody)); // bug appears when using
       setValue([
         {
           type: "paragraph",
-          text: existingBody,
+          children: [ {text: existingBody}],
         },
-      ]);
+      ]
+      );
     }
   }, [existingBody]);
 
