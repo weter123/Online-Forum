@@ -4,15 +4,31 @@ import {ModalProps} from '../types/ModalProps';
 import userReducer from "./common/UserReducer";
 import { allowSubmit } from "./common/Helpers";
 import PasswordComparison from "./common/PasswordComparison";
+import { gql, useMutation } from "@apollo/client";
+
+const RegisterMutation = gql `
+    mutation register(
+        $email: String!
+        $userName: String!
+        $password: String!
+    ) {
+        register(
+            email: $email
+            userName: $userName
+            password: $password
+        )
+    }
+`;
 
     const Registration : FC<ModalProps> = ({ isOpen, onClickToggle}) =>{
+        const [execRegister] = useMutation(RegisterMutation);
         const[{ userName,password,email, passwordConfirm,resultMsg, isSubmitDisabled}, dispatch] = useReducer(userReducer,{
             userName: "devac",
             password: "",
             email: "admin@szhaven.com",
-             passwordConfirm: "",
-             resultMsg: "",
-             isSubmitDisabled: true,
+            passwordConfirm: "",
+            resultMsg: "",
+            isSubmitDisabled: true,
         });
 
         const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,9 +50,21 @@ import PasswordComparison from "./common/PasswordComparison";
             }
         };
 
-        const onClickRegister = (e: React.MouseEvent<HTMLButtonElement,MouseEvent>) =>{
+        const onClickRegister = async (e: React.MouseEvent<HTMLButtonElement,MouseEvent>) =>{
             e.preventDefault();
-            onClickToggle(e);
+            try {
+                const result = await execRegister({
+                    variables: {
+                        email,
+                        userName,
+                        password,
+                    },
+                });
+                console.log("register result", result);
+                dispatch({  type: "resultMsg", payload: result.data.register });
+            } catch (ex) {
+                console.log(ex);
+            }
         };
 
         const onClickCancel = ( e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
