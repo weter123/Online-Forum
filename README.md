@@ -38,18 +38,18 @@ Future Todos:
   
   
 # Development Log
-2022-08-02: committed Client and Server folders into the repository. setting up GraphQL on the server side.
+2022-08-02: Committed Client and Server folders into the repository. setting up GraphQL on the server side.
 
-2022-08-03: completed base setup of GraphQL. created resolvers for createThread, getThreadById and getThreadByCategoryID calls. Working on updateThreadPoint Call.
+2022-08-03: Completed base setup of GraphQL. created resolvers for createThread, getThreadById and getThreadByCategoryID calls. Working on updateThreadPoint Call.
 
-2022-08-04: created resolvers for updateThreadPont, updateThreadItemPoint, register, login, and logout. fixed bug that caused userId to remain undefined even when altered.
+2022-08-04: Created resolvers for updateThreadPont, updateThreadItemPoint, register, login, and logout. fixed bug that caused userId to remain undefined even when altered.
 
-2022-08-05: utilized GraphQL queries and mutations to connect  register, login, and logout function calls in the server-side to the their Components in the client-side.
+2022-08-05: created GraphQL queries and mutations to connect  register, login, and logout function calls in the server-side to the their Components in the client-side.
 
-2022-08-07: utilized GraphQL queries and mutations to fetch user data and enable change password functionality in the 
+2022-08-07: Utilized GraphQL queries and mutations to fetch user data and enable change password functionality in the 
 
-2022-08-10: utilized GraphQL queries to fetch data threads and display them in the client. 
+2022-08-10: Ctilized GraphQL queries to fetch data threads and display them in the client. 
 
-2022-08-11:
+2022-08-11: Fixed 
 
 
