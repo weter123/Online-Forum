@@ -14,7 +14,7 @@ const userReducer = (state: any, action: any) => {
         case "passwordConfirm":
             return {
                 ...state,
-                PasswordConfirm: action.payload
+                passwordConfirm: action.payload
             };
         case "email" :
             return {
