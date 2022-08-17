@@ -18,8 +18,8 @@ const UserProfile = () => {
     const [{userName, password, passwordConfirm, resultMsg, isSubmitDisabled },
         dispatch,] = useReducer(userReducer, {
             userName: "",
-            password: "*********",
-            passwordConfirm: "*********",
+            password: "Deadpool123!@#",
+            passwordConfirm: "Deadpool123!@#",
             resultMsg: "",
             isSubmitDisabled: true,
     });
@@ -51,7 +51,7 @@ const UserProfile = () => {
             );
 
             const threadItemList = user.user.threadItems?.map((ti: ThreadItem) => (
-                <li key={`user-th-${ti.thread.id}`}>
+                <li key={`user-th-${ti.id}`}>
                     <Link to={`/thread/${ti.thread.id}`} className="userprofile-link">
                         {ti.body.length <= 40 ? ti.body : ti.body.substring(0.40) + " ..."}
                     </Link>
