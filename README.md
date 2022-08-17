@@ -52,6 +52,8 @@ Future Todos:
 
 2022-08-10: Ctilized GraphQL queries to fetch data threads and display them in the client. 
 
-2022-08-11: Fixed 
+2022-08-16: Completed the Project -> Require Debugging
+
+2022-08-17: fixed bugs in Registeration and PasswordComparsion components. fixed bug that crashed the website when uing Thread route/s
 
 
