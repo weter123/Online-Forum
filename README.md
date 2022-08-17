@@ -50,7 +50,7 @@ Future Todos:
 
 2022-08-07: Utilized GraphQL queries and mutations to fetch user data and enable change password functionality in the 
 
-2022-08-10: Ctilized GraphQL queries to fetch data threads and display them in the client. 
+2022-08-10: Utilized GraphQL queries to fetch data threads and display them in the client. 
 
 2022-08-16: Completed the Project -> Require Debugging
 
