@@ -27,7 +27,9 @@ due to issue with installation, I am using react-select instead of react-dropdow
 
 Current Todos:
 
-  - Complete adding GraphQL Schema.
+  - Fix Remianing Bugs in the project:
+      - Point System
+      - RichEditor
 
 Future Todos:
 
