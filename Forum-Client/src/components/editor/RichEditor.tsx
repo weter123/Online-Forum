@@ -49,7 +49,6 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody, readOnly, sendOutBody})
   useEffect(() => {
     console.log(existingBody);
     if (existingBody) {
-      //setValue(JSON.parse(existingBody)); // bug appears when using
       setValue([
         {
           type: "paragraph",

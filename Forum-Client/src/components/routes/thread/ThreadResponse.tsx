@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import RichEditor from "../../editor/RichEditor";
+import RichEditor, { getTextFromNodes } from "../../editor/RichEditor";
 import UserNameAndTime from "./UserNameAndTime";
 import ThreadPointsInline from "../../points/ThreadPointInline";
 import { gql, useMutation } from "@apollo/client";
@@ -70,7 +70,7 @@ const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn,
     };
     
     const receiveBody = (body: Node[]) => {
-        const newBody = JSON.stringify(body);
+        const newBody =  getTextFromNodes(body);
         if(bodyToSave !== newBody){
             setBodyToSave(newBody);
         }
