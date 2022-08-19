@@ -6,7 +6,7 @@ In this repository, I combined Forum Client and Forum Server to develop a fullst
   - Forum Client: https://github.com/weter123/Online-Forum-Client
   - Forum Server: https://github.com/weter123/Online-Forum-Server
 
-the Online Forum Project was designed based on 2020 tools and frameworks. due to advancement in software development, some of the dependancies used in the project utilize depecrated and outdated versions. One of my goals is to update the whole project with newer versions of the depecrated dependancies.  
+the Online Forum Project was designed based on 2020 tools and frameworks. due to advancement in software development, some of the dependancies used in the project are depecrated and outdated. One of my goals is to update the whole project with newer versions of the depecrated dependancies.  
 
 # Client Side Changes to the Orginal Project Design
 
