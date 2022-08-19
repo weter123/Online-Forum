@@ -30,8 +30,6 @@ Current Todos:
   - Fix Remianing Bugs in the project:
   
       - Point System
-      
-      - RichEditor
 
 Future Todos:
 
