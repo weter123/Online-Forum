@@ -6,27 +6,27 @@ In this repository, I combined Forum Client and Forum Server to develop a fullst
   - Forum Client: https://github.com/weter123/Online-Forum-Client
   - Forum Server: https://github.com/weter123/Online-Forum-Server
 
-the Online Forum Project was designed based on 2020 tools and frameworks. due to advancement in software development, some of the dependancies used in the project are depecrated and outdated. One of my goals is to update the whole project with newer versions of the depecrated dependancies.  
+The Online Forum Project was designed using tools and frameworks versions from 2020. due to advancement in software development, some of the dependancies used in the project are depecrated and outdated. One of my goals is to update the whole project with newer versions of the depecrated dependancies.  
 
 # Client Side Changes to the Orginal Project Design
 
-some of the dependancies provided for the project are out of date. as such, I took measures to implement the newest versions when possible.
+Some of the dependancies provided for the project are out of date. as such, I took measures to implement the newest versions when possible.
 
-  - utilized redux-toolkit based on the recomemndation of Redux developrs:
+  - Utilized redux-toolkit based on the recomemndation of Redux developrs:
 
-    - used confiugreStore instead of createStore
+    - replaced createStore with configureStore
 
-    - used createSlice when creating reducer functions
+    - Used createSlice when creating reducer functions
 
   - Migrated from React Router v5 to React Router v6
 
-    - used Routes instead Switch 
+    - Replaced Switch With Routes.
 
-    - removed exact and render and replaced them with element.
+    - Removed exact and render and replaced them with element.
 
-    - used useNavigate instead of useHistory (testing)
+    - Replaced useHistory with useNavigate.
     
-due to issue with installation, I am using react-select instead of react-dropdown (testing)
+Due to issues with installation of react-dropdown, I am using react-select instead.
 
 # ToDo List
 
