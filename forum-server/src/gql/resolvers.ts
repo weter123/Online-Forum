@@ -7,6 +7,7 @@ import { Thread } from "../repo/Thread";
 import { getAllCategories } from "../repo/ThreadCategoriesRepo";
 import { ThreadCategory } from "../repo/ThreadCategory";
 import { ThreadItem } from "../repo/ThreadItem";
+import { updateThreadItemPoint } from "../repo/ThreadItemPointRepo";
 import { createThreadItem, getThreadItemsByThreadId } from "../repo/ThreadItemRepo";
 import { updateThreadPoint } from "../repo/ThreadPointRepo";
 import { createThread, getThreadsByCategoryId, getThreadById, getThreadsLatest } from "../repo/ThreadRepo";
@@ -399,6 +400,4 @@ const resolvers: IResolvers = {
 };
 export default resolvers;
 
-function updateThreadItemPoint(userId: string, threadItemId: string, increment: boolean): string | PromiseLike<string> {
-    throw new Error("Function not implemented.");
-}
+

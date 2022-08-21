@@ -10,26 +10,27 @@ export const updateThreadItemPoint = async(
 ): Promise<string> => {
     if (!userId || userId === "0") {
         return "User is not authenticated";
-      }
+    }
+    
     let message = "failed to increment thread point.";
     const threadItem = await ThreadItem.findOne({
         where: {id: threadItemId},
         relations: ["user"],
     });
-
+    
     if(!threadItem) {
         return message + ` thread Item ${threadItem} not found.`;
     }
-
+    
     if(threadItem!.user!.id === userId) {
         message = "Error: users cannot increment their own threads";
         return message;
     }
-
+    
     const user = await User.findOne({
         where: {id: userId}
     });
-
+    
     if(!user){
         return message + "user not found";
     }
@@ -39,9 +40,10 @@ export const updateThreadItemPoint = async(
             threadItem : {id: threadItemId},
             user: {id : userId}
         },
+        relations: ["threadItem"],
     })
 
-    await getManager().transaction(async(transactionEntityManager ) => {
+    await getManager().transaction(async(transactionEntityManager) => {
         if(existingPoint){
             if(increment){
                 if(existingPoint.isDecrement){
@@ -72,10 +74,10 @@ export const updateThreadItemPoint = async(
             threadItem!.lastModifiedOn = new Date();
             await threadItem!.save();
         }
-
         message = `Successfully ${
             increment ? "incremented" : "decremented"
         } point.`;
     });
+
     return message;
 }
