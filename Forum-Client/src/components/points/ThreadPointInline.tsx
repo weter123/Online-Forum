@@ -6,11 +6,13 @@ import { gql, useMutation } from "@apollo/client";
 import useUpdateThreadPoint from "../../hooks/useUpdateThreadPoints";
 const UpdateThreadItemPoint = gql`
   mutation UpdateThreadItemPoint(
-    $threadItemId: ID! 
-    $increment: Boolean!) {
+    $threadItemId: ID!,
+    $increment: Boolean!
+  ) {
     updateThreadItemPoint(
       threadItemId: $threadItemId, 
-      increment: $increment)
+      increment: $increment
+    )
   }
 `;
 class ThreadPointsInLineProps {
@@ -38,7 +40,6 @@ const ThreadPointsInline: FC<ThreadPointsInLineProps> = ({
     e:React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.preventDefault();
-    console.log( " ThreadId: ", threadItemId );
     await execUpdateThreadItemPoint({
       variables: {
         threadItemId,

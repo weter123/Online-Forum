@@ -11,7 +11,8 @@ export const updateThreadPoint = async(
 ) : Promise<string> => {
     if (!userId || userId === "0") {
         return "User is not authenticated";
-      }
+    }
+    
     let message = "failed to increment thread point.";
     const thread = await Thread.findOne({
         where: {id: threadId},
@@ -21,19 +22,19 @@ export const updateThreadPoint = async(
     if(!thread){
         return message + " thread not found.";
     }
-
+    
     if(thread!.user!.id === userId){
         message = "Error: users cannot increment their own threads";
         return message;
     }
-
+    
     const user = await User.findOne({
         where: {id: userId}
     });
     if(!user){
         return message + "user not found";
     }
-    
+    console.log(userId);
 
     const existingPoint = await ThreadPoint.findOne({
         where: {
