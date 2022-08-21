@@ -205,7 +205,7 @@ const Thread= () => {
                 userId,
                 categoryId: category?.id,
                 title,
-                body: JSON.stringify(bodyNode),
+                body: getTextFromNodes(bodyNode),
             };
             console.log("newThread", newThread);
             const { data : createThreadMsg} = await execCreateThread({
