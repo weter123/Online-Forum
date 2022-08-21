@@ -35,6 +35,8 @@ Current Todos:
   - Fix Remianing Bugs in the project:
   
       - Point System
+      
+      - RichEditor
 
 Future Todos:
 
@@ -66,5 +68,7 @@ Future Todos:
 2022-08-16: Completed the Project -> Require Debugging
 
 2022-08-17: fixed bugs in Registeration and PasswordComparsion components. fixed bug that crashed the website when using Thread route/s
+
+2022-08-21: fixed some bugs in the point system. changing thread point and threadItem point no longer send "bad request 400"
 
 
