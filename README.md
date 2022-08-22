@@ -65,10 +65,12 @@ Future Todos:
 
 2022-08-10: Utilized GraphQL queries to fetch data threads and display them in the client. 
 
-2022-08-16: Completed the Project -> Require Debugging
+2022-08-16: utilized GraphQL queries and mutation to create Threads and fetch threads by Id and Category. Completed the Project.
 
-2022-08-17: fixed bugs in Registeration and PasswordComparsion components. fixed bug that crashed the website when using Thread route/s
+2022-08-17: fixed bugs in Registeration and PasswordComparsion components. fixed bug that crashed the website when using Thread route/s.
 
-2022-08-21: fixed some bugs in the point system. changing thread point and threadItem point no longer send "bad request 400"
+2022-08-18: fixed bug in RichEditor that added the stringified JSON of Slate node instead of just text.
+
+2022-08-21: fixed some bugs in the point system. Incrmenting/decrementing thread points and threadItem points no longer send "bad request 400".
 
 
