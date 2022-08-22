@@ -61,9 +61,13 @@ Future Todos:
 
 2022-08-08:   Created and updated DefType, Resolver and function call changePassword. set up GraphQL Mutation for change Password in client. found bug that prevented input change in the Password Confirm input field.
 
-2022-08-09: Update Thread and ThreadItem Objects to accomidate points system and the changes made to User Object and userReducer. Set up getThreadById GraphQL Query.
+2022-08-09: Update Thread and ThreadItem Objects to accommodate points system and the changes made to User Object and userReducer. Set up getThreadById GraphQL Query.
 
 2022-08-10: Utilized GraphQL queries to fetch data threads and display them in the client. 
+
+2022-08-11: Fixed bug that prevented date from displaying.
+
+2022-08-12: set up point system (threadpoints and threadItempoints).
 
 2022-08-16: utilized GraphQL queries and mutation to create Threads and fetch threads by Id and Category. Completed the Project.
 
