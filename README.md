@@ -45,7 +45,18 @@ Future Todos:
   - update application to utilize the latest recommended dependencies when feasable.
   
   
-  
+# Bugs to fix
+- Point System:
+
+    - when attempting to increment/descrement points of threadItem, no change occurs.
+
+- RichEditor:
+
+    - when opening/reloading thread, posting new thread or threadItems wont work unless certain steps are followed.
+      1) click on post/post resposne  buttons.
+      2)  enter text with length of atleast 5 characters.
+      3)  then, click on post/post resposne  buttons.
+     
 # Development Log
 2022-08-02: Committed Client and Server folders into the repository. setting up GraphQL on the server side.
 
