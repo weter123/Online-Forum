@@ -52,7 +52,7 @@ Future Todos:
 
 - RichEditor:
 
-    - when opening/reloading thread, posting new thread or threadItems wont work unless certain steps are followed.
+    - when opening/reloading thread page, creating new thread or threadItems wont work unless certain steps are followed:
       1) click on post/post resposne  buttons.
       2)  enter text with length of atleast 5 characters.
       3)  then, click on post/post resposne  buttons.
