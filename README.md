@@ -52,10 +52,10 @@ Future Todos:
 
 - RichEditor:
 
-    - when opening/reloading thread page, creating new thread or threadItems wont work unless certain steps are followed:
-      1) click on post/post resposne  buttons.
+    - when opening/reloading thread page, creating new threadItems wont work unless certain steps are followed:
+      1) click on post resposne  button.
       2)  enter text with length of atleast 5 characters.
-      3)  then, click on post/post resposne  buttons.
+      3)  then, click on post resposne  button.
      
 # Development Log
 2022-08-02: Committed Client and Server folders into the repository. setting up GraphQL on the server side.
