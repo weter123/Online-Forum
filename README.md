@@ -67,7 +67,7 @@ Future Todos:
 
 2022-08-11: Fixed bug that prevented date from displaying.
 
-2022-08-12: set up point system (threadpoints and threadItempoints).
+2022-08-12: set up point system (threadpoints and threadItempoints) - need debugging.
 
 2022-08-16: utilized GraphQL queries and mutation to create Threads and fetch threads by Id and Category. Completed the Project.
 
