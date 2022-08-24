@@ -88,4 +88,6 @@ Future Todos:
 
 2022-08-21: fixed some bugs in the point system. Incrmenting/decrementing thread points and threadItem points no longer send "bad request 400".
 
+2022-08-23: added onClick function on the forum name that navigate to the home page
+
 
