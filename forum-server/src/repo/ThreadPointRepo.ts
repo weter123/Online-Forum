@@ -34,7 +34,6 @@ export const updateThreadPoint = async(
     if(!user){
         return message + "user not found";
     }
-    console.log(userId);
 
     const existingPoint = await ThreadPoint.findOne({
         where: {

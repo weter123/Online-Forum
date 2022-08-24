@@ -74,8 +74,6 @@ export const getThreadItemsByThreadId = async(
         };
     }
 
-    console.log(threadItems);
-
     return{
         entities: threadItems,
     };

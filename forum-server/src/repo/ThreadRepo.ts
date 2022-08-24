@@ -10,7 +10,6 @@ export const createThread = async(
     title: string,
     body: string
 ):Promise<QueryArrayResult<Thread>> => {
-    console.log(userId);
     const titleMsg = isThreadTitleValid(title);
     if(titleMsg){
         return{
@@ -106,7 +105,6 @@ export const getThreadsByCategoryId = async(
         };
     };
 
-    console.log(threads);
     return{
         entities:threads,
     };
@@ -127,7 +125,6 @@ export const getThreadsLatest = async() : Promise<QueryArrayResult<Thread>> => {
         };
     };
 
-    console.log(threads);
     return{
         entities: threads,
     };
