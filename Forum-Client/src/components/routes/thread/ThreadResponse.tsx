@@ -43,6 +43,7 @@ const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn,
     useEffect(() => {
         if(body) {
             setBodyToSave(body || "");
+            console.log("body", bodyToSave);
         }
     }, [body]);
 

@@ -86,8 +86,9 @@ const Main = () => {
     const [threadCards, setThreadCards] = useState<Array<JSX.Element> | null>(null);
    
     const navigate = useNavigate();
+    
+    
     useEffect(()=> {
-        console.log(categoryId);
         if(categoryId){
             if( +categoryId> 0){
             execGetThreadsByCat({
@@ -103,7 +104,6 @@ const Main = () => {
     }, [categoryId]);
 
     useEffect(()=> {
-        console.log("Main threadsByLatestData", threadsLatestData);
         if( threadsLatestData &&
             threadsLatestData.getThreadsLatest &&
             threadsLatestData.getThreadsLatest.threads) {
@@ -118,7 +118,6 @@ const Main = () => {
     }, [threadsLatestData]);
     
     useEffect(() => {
-        console.log("Main threadsByCatData", threadsByCatData);
         if( threadsByCatData && threadsByCatData.getThreadsByCategoryId && 
             threadsByCatData.getThreadsByCategoryId.threads) {
             const threads = threadsByCatData.getThreadsByCategoryId.threads;
