@@ -35,6 +35,8 @@ Current Todos:
   - Fix Remianing Bugs in the project:
   
       - Point System
+      
+      - RichEditor
 
 Future Todos:
 
@@ -43,7 +45,18 @@ Future Todos:
   - update application to utilize the latest recommended dependencies when feasable.
   
   
-  
+# Bugs to fix
+- Point System:
+
+    - when attempting to increment/descrement points of threadItem, no change occurs.
+
+- RichEditor:
+
+    - when opening/reloading thread page, creating new threadItems wont work unless certain steps are followed:
+      1) click on post resposne  button.
+      2)  enter text with length of atleast 5 characters.
+      3)  then, click on post resposne  button.
+     
 # Development Log
 2022-08-02: Committed Client and Server folders into the repository. setting up GraphQL on the server side.
 
@@ -59,12 +72,20 @@ Future Todos:
 
 2022-08-08:   Created and updated DefType, Resolver and function call changePassword. set up GraphQL Mutation for change Password in client. found bug that prevented input change in the Password Confirm input field.
 
-2022-08-09: Update Thread and ThreadItem Objects to accomidate points system and the changes made to User Object and userReducer. Set up getThreadById GraphQL Query.
+2022-08-09: Update Thread and ThreadItem Objects to accommodate points system and the changes made to User Object and userReducer. Set up getThreadById GraphQL Query.
 
 2022-08-10: Utilized GraphQL queries to fetch data threads and display them in the client. 
 
-2022-08-16: Completed the Project -> Require Debugging
+2022-08-11: Fixed bug that prevented date from displaying.
 
-2022-08-17: fixed bugs in Registeration and PasswordComparsion components. fixed bug that crashed the website when using Thread route/s
+2022-08-12: set up point system (threadpoints and threadItempoints) - need debugging.
+
+2022-08-16: utilized GraphQL queries and mutation to create Threads and fetch threads by Id and Category. Completed the Project.
+
+2022-08-17: fixed bugs in Registeration and PasswordComparsion components. fixed bug that crashed the website when using Thread route/s.
+
+2022-08-18: fixed bug in RichEditor that added the stringified JSON of Slate node instead of just text.
+
+2022-08-21: fixed some bugs in the point system. Incrmenting/decrementing thread points and threadItem points no longer send "bad request 400".
 
 
