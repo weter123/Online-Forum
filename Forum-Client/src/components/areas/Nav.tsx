@@ -5,9 +5,13 @@ import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import ReactModal from "react-modal";
 import SideBarMenus from "./sidebar/SideBarMenus";
 import "./Nav.css";
+import {useLocation, useNavigate } from "react-router-dom";
 const Nav = () => {
     const[showMenu, setShowMenu] = useState(false);
     const {width} = useWindowDimensions();
+
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const getMobileMenu = () => {
         if(width <= 768){
@@ -27,6 +31,13 @@ const Nav = () => {
     const onRequestClose = (e: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>) =>{
         setShowMenu(false);
     }
+    const onClickGoHome = () => {
+        if(location.pathname.search("categorythreads") > -1){
+            navigate("/", {replace : true});
+            window.location.reload();
+        }
+        navigate("/", {replace : true});
+    }
     return( 
     
         <React.Fragment>
@@ -38,8 +49,10 @@ const Nav = () => {
                 <SideBarMenus />
             </ReactModal>
         <nav >
-        {getMobileMenu()} 
-        <strong>SuperForum</strong>
+        {getMobileMenu()}
+
+        <strong onClick ={onClickGoHome}>SuperForum</strong>
+
         </nav>
         </React.Fragment>
     );
