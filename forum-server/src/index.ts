@@ -8,7 +8,8 @@ import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import typeDefs from "./gql/typeDefs";
 import resolvers from "./gql/resolvers";
 import cors from "cors";
-
+import { loadEnv } from "./common/envLoader";
+loadEnv();
 require("dotenv").config();
 declare module "express-session" {
     interface SessionData {
