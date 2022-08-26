@@ -5,6 +5,16 @@ In this repository, I combined Forum Client and Forum Server to develop a fullst
 
   - Forum Client: https://github.com/weter123/Online-Forum-Client
   - Forum Server: https://github.com/weter123/Online-Forum-Server
+  
+Technologies used:
+  - React for Front-end Development.
+  - Redux to store user and category states globaly.
+  - GraphQL used as Web API insted of REST API.
+  - ApolloClient to connect to React and enable components to access GraphQl data.
+  - Expressjs to create session state.
+  - Redis to store session state data.
+  - postgres used as database. Stores user and thread data.
+  - TypeORM to link the wep application to postgres database.
 
 The Online Forum Project was designed using tools and frameworks versions from 2020. due to advancement in software development, some of the dependancies used in the project are depecrated and outdated. One of my goals is to update the whole project with newer versions of the depecrated dependancies.  
 
