@@ -54,7 +54,7 @@ const Logout: FC<ModalProps> = ({isOpen, onClickToggle}) =>{
                             className="action-btn"
                             onClick={onClickLogin}
                         >
-                        Login
+                        Logout
                         </button>
                         <button
                             style={{ marginLeft: ".5em" }}
