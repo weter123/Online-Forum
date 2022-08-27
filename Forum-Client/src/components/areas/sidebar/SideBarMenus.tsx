@@ -13,10 +13,6 @@ const SideBarMenus = () => {
     const [showLogout, setShowLogout] = useState(false);
     const user = useAppSelector(state =>state.user);
     
-   
-
-    
-
     const onClickToggleRegister = () => {
         setShowRegister(!showRegister);
     };
@@ -31,15 +27,8 @@ const SideBarMenus = () => {
     return(
         <React.Fragment>
             <ul>
-                {user.user ? (
-                     <li>
-                        <FontAwesomeIcon icon= {faUser} />
-                        <span className='menu-name'>
-                            <Link to={`/userprofile/${user.user?.id}`}>{user.user?.userName}</Link>
-                        </span>
-                    </li>
-                ): null}
-                {user.user ? null : (
+                
+                {user.user && user.user.id !== "0"  ? null : (
                     <li>
                         <FontAwesomeIcon icon= {faRegistered} />
                         <span onClick={onClickToggleRegister} className='menu-name'>
@@ -53,7 +42,7 @@ const SideBarMenus = () => {
                     </li>
                 )}
 
-                {user.user ? null : (
+                {user.user && user.user.id !== "0"  ? null : (
                     <li>
                         <FontAwesomeIcon icon={faSignInAlt} />
                         <span onClick={onClickToggleLogin} className="menu-name">
@@ -63,7 +52,16 @@ const SideBarMenus = () => {
                     </li>
                 )}
 
-                {user.user ? (
+                {user.user && user.user.id !== "0"  ? (
+                     <li>
+                        <FontAwesomeIcon icon= {faUser} />
+                        <span className='menu-name'>
+                            <Link to={`/userprofile/${user.user?.id}`}>{user.user?.userName}</Link>
+                        </span>
+                    </li>
+                ): null}
+
+                {user.user && user.user.id !== "0" ? (
                     <li>
                         <FontAwesomeIcon icon={faSignOutAlt} />
                         <span onClick={onClickToggleLogout} className="menu-name">
