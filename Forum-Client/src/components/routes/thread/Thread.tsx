@@ -102,7 +102,7 @@ const Thread= () => {
         bodyNode },
         threadReducerDispatch,
     ] = useReducer(threadReducer, {
-        userId: user ? user.user.id : "0",
+        userId: user ? (user.user ? user.user.id : "0") : "0",
         category: undefined,
         title: "",
         body: "",
