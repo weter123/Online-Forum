@@ -5,8 +5,18 @@ In this repository, I combined Forum Client and Forum Server to develop a fullst
 
   - Forum Client: https://github.com/weter123/Online-Forum-Client
   - Forum Server: https://github.com/weter123/Online-Forum-Server
+  
+Technologies used:
+  - **React** for Front-end Development.
+  - **Redux** to store user and category states globaly.
+  - **GraphQL** used as Web API insted of REST API.
+  - **ApolloClient** to connect to React and enable components to access GraphQl data.
+  - **Expressjs** to create session state.
+  - **Redis** to store session state data.
+  - **Postgres** used as database. Stores user and thread data.
+  - **TypeORM** to link the wep application to postgres database.
 
-The Online Forum Project was designed using tools and frameworks versions from 2020. due to advancement in software development, some of the dependancies used in the project are depecrated and outdated. One of my goals is to update the whole project with newer versions of the depecrated dependancies.  
+> The Online Forum Project was designed using tools and frameworks versions from 2020. due to advancement in software development, some of the dependancies used in the project are depecrated and outdated. One of my goals is to update the whole project with newer versions of the depecrated dependancies.  
 
 # Client Side Changes to the Orginal Project Design
 
@@ -26,7 +36,7 @@ Some of the dependancies provided for the project are out of date. as such, I to
 
     - Replaced useHistory with useNavigate.
     
-Due to issues with installation of react-dropdown, I am using react-select instead.
+> Due to issues with installation of react-dropdown, I am using react-select instead.
 
 # ToDo List
 
@@ -88,6 +98,8 @@ Future Todos:
 
 2022-08-21: fixed some bugs in the point system. Incrmenting/decrementing thread points and threadItem points no longer send "bad request 400".
 
-2022-08-23: added onClick function on the forum name that navigate to the home page
+2022-08-23: added onClick function on the forum name that navigate to the homepage.
+
+2022-08-26: fixed bug that crashed the application when a thread is open and user is not logged in. clicking thread titles in right menu  now navigate to the thread's page.
 
 
