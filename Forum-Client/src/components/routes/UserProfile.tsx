@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import ThreadItem from "../../models/ThreadItem";
 import { useAppSelector } from "../../hooks/useHooks";
 import { gql, useMutation } from "@apollo/client";
+import Button from '@mui/material/Button';
 
 const ChangePassword = gql `
     mutation ChangePassword($newPassword: String!) {
@@ -103,12 +104,13 @@ const UserProfile = () => {
                             password={password} 
                             passwordConfirm={passwordConfirm}                            //passwordConfirm={passwordConfirm}
                         />
-                        <button 
+                        <Button 
+                            variant="contained"
                             className="action-btn" 
                             disabled={isSubmitDisabled}
                             onClick= {onClickChangePassword}>
                             Change Password
-                        </button>
+                        </Button>
                     </div>
                     <div style={{ marginTop: ".5em" }}>
                         <label>{resultMsg}</label>

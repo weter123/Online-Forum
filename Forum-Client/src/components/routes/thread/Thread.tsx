@@ -17,6 +17,7 @@ import { useAppSelector } from "../../../hooks/useHooks";
 import { getTextFromNodes } from "../../editor/RichEditor";
 import { Node } from "slate";
 import ThreadResponse from "./ThreadResponse";
+import Button from '@mui/material/Button';
 
 const GetThreadById = gql `
     query GetThreadById($id: ID!) {
@@ -258,9 +259,9 @@ const Thread= () => {
                     {thread ? null : (
                         <>
                             <div style={{ marginTop: ".5em" }}>
-                                <button className="action-btn" onClick={onClickPost}>
+                                <Button variant="contained" className="action-btn" onClick={onClickPost}>
                                     Post
-                                </button>
+                                </Button>
                             </div>
                              <strong>{postMsg}</strong>
                         </>

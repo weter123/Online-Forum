@@ -4,6 +4,7 @@ import ReactModal from "react-modal";
 import { useAppSelector } from "../../hooks/useHooks";
 import useRefreshReduxMe, { Me } from "../../hooks/useRefreshReduxMe";
 import {ModalProps} from "../types/ModalProps"
+import Button from '@mui/material/Button';
 
 const LogoutMutation = gql `
     mutation logout($userName: String!){
@@ -49,20 +50,22 @@ const Logout: FC<ModalProps> = ({isOpen, onClickToggle}) =>{
                 </div>
                 <div className="form-buttons form-buttons-sm">
                     <div className="form-btn-left">
-                        <button
+                        <Button
+                            variant="contained"
                             style={{ marginLeft: ".5em" }}
                             className="action-btn"
                             onClick={onClickLogin}
                         >
                         Logout
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            variant="contained"
                             style={{ marginLeft: ".5em" }}
                             className="cancel-btn"
                             onClick={onClickCancel}
                         >
                         Close
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </form>

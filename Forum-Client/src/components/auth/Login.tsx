@@ -5,6 +5,7 @@ import userReducer from "./common/UserReducer";
 import { allowSubmit } from "./common/Helpers";
 import { gql, useMutation } from "@apollo/client";
 import useRefreshReduxMe, { Me } from "../../hooks/useRefreshReduxMe";
+import Button from '@mui/material/Button';
 
 const LoginMutation = gql `
   mutation Login($userName:String!, $password: String!) {
@@ -94,21 +95,23 @@ const Login: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
             </div>
             <div className="form-buttons form-buttons-sm">
               <div className="form-btn-left">
-                <button
+                <Button
+                  variant="contained"
                   style={{ marginLeft: ".5em" }}
                   className="action-btn"
                   disabled={isSubmitDisabled}
                   onClick={onClickLogin}
                 >
                   Login
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="contained"
                   style={{ marginLeft: ".5em" }}
                   className="cancel-btn"
                   onClick={onClickCancel}
                 >
                   Close
-                </button>
+                </Button>
               </div>
     
               <span className="form-btn-left">

@@ -5,6 +5,7 @@ import userReducer from "./common/UserReducer";
 import { allowSubmit } from "./common/Helpers";
 import PasswordComparison from "./common/PasswordComparison";
 import { gql, useMutation } from "@apollo/client";
+import Button from '@mui/material/Button';
 
 const RegisterMutation = gql `
     mutation register(
@@ -99,19 +100,21 @@ const RegisterMutation = gql `
                         </div>
                         <div className="form-buttons">
                             <div className="form-btn-left">
-                                <button
+                                <Button
+                                    variant="contained"
                                     style={{marginLeft: ".5em"}}
                                     className="action-btn"
                                     disabled ={isSubmitDisabled}
                                     onClick ={onClickRegister}>
                                         Register
-                                </button>
-                                <button
+                                </Button>
+                                <Button
+                                    variant="contained"
                                     style={{marginLeft: ".5em"}}
                                     className="cancel-btn"
                                     onClick ={onClickCancel}>
                                         Close
-                                </button>
+                                </Button>
                             </div>
                             <span className="form-btn-right">
                                 <strong>{resultMsg}</strong>

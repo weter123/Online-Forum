@@ -6,6 +6,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useAppSelector } from "../../../hooks/useHooks";
 import {Node} from "slate";
 import Thread from "../../../models/Thread";
+import Button from '@mui/material/Button';
 
 const CreateThreadItem = gql`
     mutation createThreadItem(
@@ -103,9 +104,9 @@ const ThreadResponse: FC<ThreadResponseProps> = ({body,userName, lastModifiedOn,
             {!readOnly && thread ? (
                 <>
                     <div style={{ marginTop: ".5em" }}>
-                        <button className="action-btn" onClick={onClickPost}>
+                        <Button variant="contained" className="action-btn" onClick={onClickPost}>
                         Post Response
-                        </button>
+                        </Button>
                     </div>
                     <strong>{postMsg}</strong>
                 </>

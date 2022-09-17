@@ -32,11 +32,8 @@ const Nav = () => {
         setShowMenu(false);
     }
     const onClickGoHome = () => {
-        if(location.pathname.search("categorythreads") > -1){
-            navigate("/", {replace : true});
-            window.location.reload();
-        }
         navigate("/", {replace : true});
+        window.location.reload();
     }
     return( 
     

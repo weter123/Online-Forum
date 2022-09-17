@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ThreadCard from "./ThreadCard";
 import Category from "../../../models/Category";
 import { gql, useLazyQuery } from "@apollo/client";
+import Button from '@mui/material/Button';
 
 const GetThreadsByCategoryId = gql`
     query getThreadsByCategoryId($categoryId : ID!) {
@@ -140,9 +141,9 @@ const Main = () => {
     }
     return (
         <main className="content">
-            <button className= "action-btn" onClick ={onClickPostThread}>
+            <Button className="action-btn" variant="contained" onClick ={onClickPostThread}>
                 Post
-            </button>
+            </Button>
             <MainHeader category={category} />
             <div>{threadCards}</div>
         </main>
